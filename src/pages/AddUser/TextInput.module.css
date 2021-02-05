@@ -1,0 +1,30 @@
+.error {
+  line-height: 1;
+  font-size: 0.8rem;
+  color: #eb5757;
+}
+
+.password-field {
+  position: relative;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 0;
+  border: none;
+  font-size: 1.6rem;
+  background: none;
+  color: grey;
+}
+
+.togglePassword:hover,
+.togglePassword:active,
+.togglePassword:visited,
+.togglePassword:focus {
+  background: none;
+  color: inherit;
+  border: transparent;
+  outline: transparent;
+}
