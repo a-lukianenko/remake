@@ -1,0 +1,22 @@
+.error {
+  line-height: 1;
+  font-size: 0.8rem;
+  color: #eb5757;
+}
+
+.password-field {
+  position: relative;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  font-size: 1.6rem;
+  color: grey;
+  cursor: pointer;
+}
+
+.showPassword {
+  color: black !important;
+}
