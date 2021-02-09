@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Select from "react-select";
+import { useField } from "formik";
 
 const languageOptions = [
   { value: "English", label: "English" },
@@ -27,19 +28,35 @@ const languageOptions = [
   { value: "Korean", label: "Korean" },
 ];
 
-export const LanguageInput = () => {
+export const LanguageInput = ({ label, ...props }) => {
+  const [field, meta, helpers] = useField(props);
   const [selectedOption, setSelectedOption] = useState(null);
+
+  const { name, onBlur } = field;
+  const { setValue, setTouched } = helpers;
+
+  const handleSelect = option => {
+    setSelectedOption(option);
+    setValue(option.value);
+    setTouched(true);
+  };
 
   return (
     <div>
+      <label htmlFor={props.id}>{label}</label>
       <Select
         defaultValue={selectedOption}
-        onChange={setSelectedOption}
         options={languageOptions}
+        onChange={option => handleSelect(option)}
+        onBlur={onBlur}
+        onFocus={() => setTouched(true)}
         noOptionsMessage={() => "not found"}
-        placeholder='Select a language'
+        placeholder={"Select a language"}
         isSearchable
+        name={name}
+        {...props}
       />
+      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
     </div>
   );
 };

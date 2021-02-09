@@ -6,7 +6,7 @@ export const Capabilities = () => {
   return (
     <div style={style.contacts}>
       <div>
-        <SkillsInput />
+        <SkillsInput id='skills' name='skils' label='Skills' />
         <AdditionalInfo />
       </div>
       <div>

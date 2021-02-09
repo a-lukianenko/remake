@@ -19,11 +19,10 @@ export default function validate(usernames, emails) {
       .required("required"),
     firstName: Yup.string().required("required"),
     lastName: Yup.string().required("required"),
-    // birthDate: Yup.date().max(
-    //   subYears(new Date(), 18),
-    //   "you must be at least 18 years old"
-    // ),
-    birthDate: Yup.string(),
+    birthDate: Yup.date().max(
+      subYears(new Date(), 18),
+      "you must be at least 18 years old"
+    ),
     email: Yup.string()
       .matches(
         emailPattern,
@@ -54,9 +53,10 @@ export default function validate(usernames, emails) {
       "must match the pattern +7 (XXX) XXX-XX-XX"
     ),
 
-    skils: Yup.array(Yup.string().min(3, "Minimum 3 skills")).required(
-      "required"
-    ),
+    skils: Yup.array(Yup.string())
+      .min(3, "Minimum 3 skills")
+      .required("required")
+      .nullable(),
     additionalInfo: Yup.string().max(300, "Maximum 300 characters"),
     hobbies: Yup.array(Yup.string()),
   });

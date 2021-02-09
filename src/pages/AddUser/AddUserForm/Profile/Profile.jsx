@@ -1,5 +1,5 @@
 import { TextInput } from "../TextInput";
-import { BrithDateInput } from "./BirthDateInput";
+import { BirthDateInput } from "./BirthDateInput";
 import { RadioInput } from "./RadioInput";
 
 export const Profile = () => {
@@ -18,7 +18,7 @@ export const Profile = () => {
           id='lastName'
           name='lastName'
         />
-        <BrithDateInput id='birthdate' label='Birth date' name='birthDate' />
+        <BirthDateInput id='birthDate' label='Birth date' name='birthDate' />
       </div>
       <div>
         <TextInput label='Email' type='email' id='email' name='email' />

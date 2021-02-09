@@ -40,7 +40,7 @@ export const Contacts = () => {
           name='facebook'
         />
 
-        <LanguageInput />
+        <LanguageInput id='language' name='language' label='Main language' />
       </div>
       <div>
         <FaxInput id='fax' label='Fax' name='fax' type='tel' />
