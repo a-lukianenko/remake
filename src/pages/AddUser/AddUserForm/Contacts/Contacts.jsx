@@ -4,28 +4,44 @@ import { FaxInput } from "./FaxInput";
 import { LanguageInput } from "./LanguageInput";
 import { PhoneInput } from "./PhoneInput/PhoneInput";
 import { ReactComponent as Add } from "./add.svg";
+import { useFormikContext } from "formik";
 
 export const Contacts = () => {
-  const addPhone = () => {
-    if (phones.length <= 3) {
-      setPhones(phones => [
-        ...phones,
-        { type: "tel", name: `phone${phones.length + 1}` },
-      ]);
+  const {
+    values: { phone1, phone2, phone3 },
+    setFieldValue,
+  } = useFormikContext();
+
+  const data = [phone1, phone2, phone3].map((phone, i) => ({
+    [`phone${i + 1}`]: phone,
+  }));
+
+  const addPhoneInput = () => {
+    if (phones.length < 3) {
+      setPhones(_ => {
+        const filled = data.filter((phone, i) => phone[`phone${i + 1}`]);
+        const unfilled = data.filter((phone, i) => !phone[`phone${i + 1}`]);
+        const [nextToAdd] = unfilled.sort(
+          (prev, next) =>
+            +Object.keys(prev)[0].split("e")[1] -
+            +Object.keys(next)[0].split("e")[1]
+        );
+        console.log("filled", filled, "toAdd", nextToAdd);
+        return [...filled, nextToAdd];
+      });
     }
   };
 
   const removePhone = name => {
-    phones.length > 1 &&
-      setPhones(phones => phones.filter(phone => phone.name !== name));
+    if (phones.length > 1) {
+      setFieldValue([name], "");
+      setPhones(phones.filter(phone => Object.keys(phone)[0] !== name));
+    }
   };
 
-  const initialPhone = n => ({
-    name: `phone${n}`,
-    type: "tel",
-  });
-
-  const [phones, setPhones] = useState([initialPhone(1)]);
+  const dataFiltered = data.filter(phone => Object.values(phone)[0]);
+  const initialValue = dataFiltered.length > 0 ? dataFiltered : [data[0]];
+  const [phones, setPhones] = useState(initialValue);
 
   return (
     <div style={style.contacts}>
@@ -44,18 +60,17 @@ export const Contacts = () => {
       </div>
       <div>
         <FaxInput id='fax' label='Fax' name='fax' type='tel' />
-        {phones.map((phoneProps, i) => (
+        {phones.map((phone, i) => (
           <PhoneInput
             key={i.toString()}
             label={`Phone #${i + 1}`}
-            name={`phone${i + 1}`}
+            name={Object.keys(phone)[0]}
             removePhone={removePhone}
-            {...phoneProps}
           />
         ))}
 
         {phones.length < 3 && (
-          <button onClick={addPhone} type='button' style={style.btn}>
+          <button onClick={addPhoneInput} type='button' style={style.btn}>
             <Add /> <span style={style.span}>add phone number</span>
           </button>
         )}

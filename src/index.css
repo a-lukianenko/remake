@@ -20,6 +20,13 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+
+.error {
+  line-height: 1;
+  font-size: 0.8rem;
+  color: #eb5757;
+}
+
 html {
   line-height: 1.15;
 

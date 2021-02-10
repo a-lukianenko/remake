@@ -30,7 +30,10 @@ const languageOptions = [
 
 export const LanguageInput = ({ label, ...props }) => {
   const [field, meta, helpers] = useField(props);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const { value } = field;
+
+  const initialValue = value ? { value, label: value } : null;
+  const [selectedOption, setSelectedOption] = useState(initialValue);
 
   const { name, onBlur } = field;
   const { setValue, setTouched } = helpers;
@@ -56,7 +59,9 @@ export const LanguageInput = ({ label, ...props }) => {
         name={name}
         {...props}
       />
-      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+      {meta.touched && meta.error ? (
+        <div className='error'>{meta.error}</div>
+      ) : null}
     </div>
   );
 };

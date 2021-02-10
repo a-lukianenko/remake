@@ -1,14 +1,21 @@
-import { Field } from "formik";
+import { useField } from "formik";
 
-export const AdditionalInfo = () => {
+export const AdditionalInfo = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+
   return (
     <>
-      <label>Additional Information</label>
-      <Field
-        as='textarea'
-        name='additionalInfo'
-        placeholder='Anything else we should know about you...'
+      <label htmlFor={props.id}>{label}</label>
+      <textarea
+        {...field}
+        {...props}
+        rows='5'
+        cols='33'
+        style={{ resize: "none" }}
       />
+      {meta.touched && meta.error ? (
+        <div className='error'>{meta.error}</div>
+      ) : null}
     </>
   );
 };

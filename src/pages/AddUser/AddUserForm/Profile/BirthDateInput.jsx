@@ -25,7 +25,9 @@ export const BirthDateInput = ({ label, id, ...props }) => {
         {...props}
         name={name}
       />
-      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+      {meta.touched && meta.error ? (
+        <div className='error'>{meta.error}</div>
+      ) : null}
     </div>
   );
 };

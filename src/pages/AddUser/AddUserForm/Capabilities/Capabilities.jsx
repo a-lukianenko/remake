@@ -7,10 +7,14 @@ export const Capabilities = () => {
     <div style={style.contacts}>
       <div>
         <SkillsInput id='skills' name='skils' label='Skills' />
-        <AdditionalInfo />
+        <AdditionalInfo
+          id='additionalInfo'
+          name='additionalInfo'
+          label='Additional Information'
+        />
       </div>
       <div>
-        <Hobbies />
+        <Hobbies id='hobbies' name='hobbies' label='My hobbies' />
       </div>
     </div>
   );

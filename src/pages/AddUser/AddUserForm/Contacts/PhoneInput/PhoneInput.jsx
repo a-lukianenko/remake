@@ -11,10 +11,12 @@ export const PhoneInput = ({ label, removePhone, ...props }) => {
       <InputMask
         mask='+7 (999) 999-99-99'
         placeholder='Enter phone'
-        {...field}
         {...props}
+        {...field}
       />
-      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+      {meta.touched && meta.error ? (
+        <div className='error'>{meta.error}</div>
+      ) : null}
       <button
         onClick={() => removePhone(field.name)}
         type='button'

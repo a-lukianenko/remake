@@ -1,9 +1,3 @@
-.error {
-  line-height: 1;
-  font-size: 0.8rem;
-  color: #eb5757;
-}
-
 .password-field {
   position: relative;
 }
@@ -19,4 +13,10 @@
 
 .showPassword {
   color: black !important;
+}
+
+.error {
+  line-height: 1;
+  font-size: 0.8rem;
+  color: #eb5757;
 }

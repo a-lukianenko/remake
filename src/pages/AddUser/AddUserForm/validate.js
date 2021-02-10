@@ -6,6 +6,7 @@ const emailPattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export default function validate(usernames, emails) {
   return Yup.object({
+    avatar: Yup.string(),
     username: Yup.string()
       .notOneOf(usernames, "username already taken")
       .required("required"),
@@ -52,7 +53,16 @@ export default function validate(usernames, emails) {
       phonePattern,
       "must match the pattern +7 (XXX) XXX-XX-XX"
     ),
-
+    // phones: Yup.array(
+    //   Yup.object({
+    //     [`phone${/(1|2|3)/}`]: Yup.string().matches(
+    //       phonePattern,
+    //       "must match the pattern +7 (XXX) XXX-XX-XX"
+    //     ),
+    //   })
+    // )
+    //   .max(3)
+    //   .nullable(),
     skils: Yup.array(Yup.string())
       .min(3, "Minimum 3 skills")
       .required("required")

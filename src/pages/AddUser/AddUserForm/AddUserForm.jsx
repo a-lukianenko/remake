@@ -11,6 +11,7 @@ export const AddUserForm = () => {
   const emails = ["example@example.com", "gmail@gmail.com"];
   const formProps = {
     initialValues: {
+      avatar: "",
       username: "",
       password: "",
       passwordRepeat: "",
