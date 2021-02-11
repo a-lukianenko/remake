@@ -26,7 +26,6 @@ export const Contacts = () => {
             +Object.keys(prev)[0].split("e")[1] -
             +Object.keys(next)[0].split("e")[1]
         );
-        console.log("filled", filled, "toAdd", nextToAdd);
         return [...filled, nextToAdd];
       });
     }

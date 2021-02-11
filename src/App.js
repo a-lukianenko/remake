@@ -14,7 +14,7 @@ import { UsersList } from "./pages/UsersList/UsersList";
 import { UserProfile } from "./pages/UserProfile/UserProfile";
 import { EditProfile } from "./pages/EditProfile/EditProfile";
 
-function App() {
+export default function App() {
   return (
     <Router>
       <Navbar />
@@ -33,5 +33,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

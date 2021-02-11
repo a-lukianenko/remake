@@ -1,6 +1,7 @@
 import { TextInput } from "../TextInput";
 import { BirthDateInput } from "./BirthDateInput";
 import { RadioInput } from "./RadioInput";
+import { Address } from "./Address";
 
 export const Profile = () => {
   return (
@@ -23,7 +24,14 @@ export const Profile = () => {
       <div>
         <TextInput label='Email' type='email' id='email' name='email' />
 
-        <TextInput label='Address' type='text' id='address' name='address' />
+        <Address
+          id='address'
+          name='address'
+          label='Address'
+          type='search'
+          autoComplete='off'
+          placeholder='Search address'
+        />
 
         <RadioInput />
       </div>
