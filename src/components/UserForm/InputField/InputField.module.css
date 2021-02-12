@@ -1,0 +1,46 @@
+/* text input */
+.input {
+  position: relative;
+  margin-bottom: 0;
+  background-color: white;
+}
+
+.invalid {
+  border: 1px solid var(--error);
+}
+
+/* .labelText {
+  position: relative;
+  font-size: 14px;
+  font-weight: normal;
+  color: #657c9a;
+} */
+
+.required {
+  position: absolute;
+  right: 0;
+  top: 5px;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: var(--error);
+}
+
+/* password input */
+.passwordInput {
+  position: relative;
+}
+
+.password {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  font-size: 1.6rem;
+  color: grey;
+  cursor: pointer;
+}
+
+.showPassword {
+  color: black !important;
+}
