@@ -1,11 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import css from "./Navbar.module.css";
 
 export const Navbar = () => {
   return (
     <div className={css.wrapper}>
       <nav className={css.Navbar}>
-        <NavLink to='/add-user'>Remake</NavLink>
+        <Link to='/add-user'>Remake</Link>
         <ul className={css.menu}>
           <li>
             <NavLink to='/add-user' activeClassName={css.active}>

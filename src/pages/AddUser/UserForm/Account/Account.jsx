@@ -1,8 +1,13 @@
 import { TextInput } from "../TextInput";
 import { Avatar } from "./Avatar/Avatar";
 import { PasswordInput } from "./PasswordInput";
+// import { useFormikContext } from "formik";
 
 export const Account = () => {
+  // const {
+  //   errors: { username, password, passwordRepeat },
+  // } = useFormikContext();
+
   return (
     <div>
       <Avatar name='avatar' />

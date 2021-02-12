@@ -1,10 +1,10 @@
-import { AddUserForm } from "./AddUserForm/AddUserForm";
+import { UserForm } from "./UserForm/UserForm";
 
 export const AddUser = () => {
   return (
     <section>
       <h2 style={style.h2}>Adding new user</h2>
-      <AddUserForm />
+      <UserForm />
     </section>
   );
 };

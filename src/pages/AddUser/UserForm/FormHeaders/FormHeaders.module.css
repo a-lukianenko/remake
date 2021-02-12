@@ -1,0 +1,22 @@
+.formHeaders {
+  display: flex;
+  text-align: center;
+}
+
+.h3 {
+  flex-basis: 25%;
+  margin-top: 0 !important;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  color: #9bb0cb;
+  background-color: #dde2eb;
+}
+
+.current {
+  color: white;
+  background-color: #4e86e4;
+}
+
+.passed {
+  color: black;
+}
