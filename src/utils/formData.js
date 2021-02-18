@@ -2,7 +2,6 @@ import { object, string, date, array, ref } from "yup";
 import { subYears } from "date-fns";
 
 const phonePattern = /\+7\s\(\d{3}\)\s(\d{3}-\d{2}-\d{2})/;
-const emailPattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export const formHeaders = [
   "1. Account",
@@ -64,10 +63,7 @@ export const validationSchema = {
         "you must be at least 18 years old"
       ),
       email: string()
-        .matches(
-          emailPattern,
-          "email should match the pattern e.g. name@some.com"
-        )
+        .email("Invalid email")
         .notOneOf(emails, "email already registered")
         .required("required"),
       address: string(),

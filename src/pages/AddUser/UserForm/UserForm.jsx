@@ -1,7 +1,7 @@
 import { useState, useRef, Children } from "react";
 import { Formik, Form } from "formik";
 import { Account } from "./Account/Account";
-import { formHeaders, validationSchema, initialValues } from "./formData";
+import { formHeaders, validationSchema, initialValues } from "utils/formData";
 import { Profile } from "./Profile/Profile";
 import { Contacts } from "./Contacts/Contacts";
 import { Capabilities } from "./Capabilities/Capabilities";
