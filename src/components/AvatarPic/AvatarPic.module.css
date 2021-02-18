@@ -1,0 +1,7 @@
+.avatarPic {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border: 2px solid blue;
+  border-radius: 50%;
+},

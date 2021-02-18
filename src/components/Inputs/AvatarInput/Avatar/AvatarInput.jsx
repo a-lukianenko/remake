@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useField } from "formik";
-import user from "./user.svg";
+import { AvatarPic } from "components/AvatarPic/AvatarPic";
 
 export const Avatar = ({ name }) => {
   const [field, meta, helpers] = useField(name);
@@ -34,13 +34,14 @@ export const Avatar = ({ name }) => {
 
   return (
     <div>
-      <img
+      <AvatarPic
         src={avatarUrl}
         alt='avatar'
         style={style.avatar}
         width='100px'
         height='100px'
       />
+
       {meta.error && <div className='error'>{meta.error}</div>}
       <label htmlFor='avatar' style={style.label}>
         + add avatar
