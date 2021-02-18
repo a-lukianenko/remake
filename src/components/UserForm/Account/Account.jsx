@@ -1,10 +1,10 @@
+import { AvatarInput } from "components/Inputs/AvatarInput/AvatarInput";
 import { TextInput } from "components/Inputs/TextInput/TextInput";
-import { Avatar } from "./Avatar/Avatar";
 
 export const Account = () => {
   return (
     <div>
-      <Avatar name='avatar' />
+      <AvatarInput name='avatar' />
       <TextInput
         label='User name'
         type='text'

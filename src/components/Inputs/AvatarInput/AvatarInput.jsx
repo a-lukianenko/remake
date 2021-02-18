@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useField } from "formik";
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
+import { fileInput, label } from "./AvatarInput.module.css";
 
-export const Avatar = ({ name }) => {
+export const AvatarInput = ({ name }) => {
   const [field, meta, helpers] = useField(name);
   const { setValue, setError } = helpers;
 
   const [avatarLabelName, setAvatarLabelName] = useState(null);
-  const [avatarUrl, setAvatarUrl] = useState(field.value || user);
+  const [avatarUrl, setAvatarUrl] = useState(field.value || "");
 
   const handleFiles = e => {
     const file = e.target.files[0];
@@ -34,21 +35,18 @@ export const Avatar = ({ name }) => {
 
   return (
     <div>
-      <AvatarPic
-        src={avatarUrl}
-        alt='avatar'
-        style={style.avatar}
-        width='100px'
-        height='100px'
-      />
+      <AvatarPic src={avatarUrl} width='100px' height='100px' />
 
       {meta.error && <div className='error'>{meta.error}</div>}
-      <label htmlFor='avatar' style={style.label}>
+
+      <label htmlFor='avatar' className={label}>
         + add avatar
       </label>
+
       <span>{avatarLabelName}</span>
+
       <input
-        style={style.fileInput}
+        className={fileInput}
         onChange={handleFiles}
         type='file'
         id='avatar'
@@ -57,26 +55,4 @@ export const Avatar = ({ name }) => {
       />
     </div>
   );
-};
-
-const style = {
-  avatar: {
-    display: "block",
-    width: 100,
-    height: 100,
-    border: "2px solid blue",
-    borderRadius: "50%",
-  },
-  fileInput: {
-    position: "absolute",
-    height: 1,
-    width: 1,
-    overflow: "hidden",
-    clip: "rect(1px, 1px, 1px, 1px)",
-  },
-  label: {
-    display: "inline-block",
-    marginRight: 10,
-    cursor: "pointer",
-  },
 };
