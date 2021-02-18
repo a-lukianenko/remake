@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { TextInput } from "../../Inputs/TextInput/TextInput";
-import { FaxInput } from "./FaxInput";
-import { LanguageInput } from "./LanguageInput";
-import { PhoneInput } from "./PhoneInput/PhoneInput";
-import { ReactComponent as Add } from "./add.svg";
+import { TextInput } from "components/Inputs/TextInput/TextInput";
+import { LanguageInput } from "components/Inputs/SelectInput/LanguageInput";
 import { useFormikContext } from "formik";
+import { TelInput } from "components/Inputs/TelInput/TelInput";
+import { ReactComponent as Add } from "assets/img/add.svg";
 
 export const Contacts = () => {
   const {
@@ -58,9 +57,9 @@ export const Contacts = () => {
         <LanguageInput id='language' name='language' label='Main language' />
       </div>
       <div>
-        <FaxInput id='fax' label='Fax' name='fax' type='tel' />
+        <TelInput id='fax' label='Fax' name='fax' type='tel' />
         {phones.map((phone, i) => (
-          <PhoneInput
+          <TelInput
             key={i.toString()}
             label={`Phone #${i + 1}`}
             name={Object.keys(phone)[0]}

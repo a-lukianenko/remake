@@ -12,24 +12,24 @@ export const formHeaders = [
 
 export const initialValues = {
   avatar: "",
-  username: "",
-  password: "",
-  passwordRepeat: "",
-  firstName: "",
-  lastName: "",
-  email: "",
+  username: "andri",
+  password: "111aaAAAAaa",
+  passwordRepeat: "111aaAAAAaa",
+  firstName: "Andrii",
+  lastName: "Lukianeko",
+  email: "a@a.com",
   address: "",
   gender: "male",
   birthDate: new Date(),
-  company: "",
+  company: "brocoders",
   github: "",
   facebook: "",
-  language: "",
+  languages: ["English"],
   fax: "",
   phone1: "",
   phone2: "",
   phone3: "",
-  skils: null,
+  skils: [],
   additionalInfo: "",
   hobbies: [],
 };
@@ -74,7 +74,9 @@ export const validationSchema = {
     company: string().required("required"),
     github: string(),
     facebook: string(),
-    language: string().required("required"),
+    languages: array(string())
+      .min(1, "choose your main language")
+      .required("required"),
     fax: string().matches(
       phonePattern,
       "must match the pattern +7 (XXX) XXX-XX-XX"
@@ -93,10 +95,7 @@ export const validationSchema = {
     ),
   }),
   capabilities: object({
-    skils: array(string())
-      .min(3, "Minimum 3 skills")
-      .required("required")
-      .nullable(),
+    skils: array(string()).min(3, "Minimum 3 skills").required("required"),
     additionalInfo: string().max(300, "Maximum 300 characters"),
     hobbies: array(string()),
   }),
