@@ -1,4 +1,4 @@
-import { TextInput } from "../TextInput";
+import { TextInput } from "../../Inputs/TextInput/TextInput";
 import { BirthDateInput } from "./BirthDateInput";
 import { RadioInput } from "./RadioInput";
 import { Address } from "./Address";

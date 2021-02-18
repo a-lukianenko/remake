@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextInput } from "../TextInput";
+import { TextInput } from "../../Inputs/TextInput/TextInput";
 import { FaxInput } from "./FaxInput";
 import { LanguageInput } from "./LanguageInput";
 import { PhoneInput } from "./PhoneInput/PhoneInput";

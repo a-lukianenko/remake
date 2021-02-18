@@ -1,0 +1,10 @@
+:root {
+  --error: #eb5757;
+}
+
+label {
+  position: relative;
+  font-size: 14px;
+  font-weight: normal;
+  color: #657c9a;
+}
