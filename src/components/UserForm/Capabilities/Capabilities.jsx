@@ -1,12 +1,20 @@
 import { AdditionalInfo } from "./AdditionalInfo";
-import { SkillsInput } from "./SkillsInput";
 import { Hobbies } from "./Hobbies";
+import { skills } from "utils/formData";
+import { SelectInput } from "components/Inputs/SelectInput/SelectInput";
 
 export const Capabilities = () => {
   return (
     <div style={style.contacts}>
       <div>
-        <SkillsInput id='skills' name='skils' label='Skills' />
+        <SelectInput
+          id='skills'
+          name='skills'
+          label='Skills'
+          selectOptions={skills}
+          placeholder={"Select 3 skills"}
+          isMulti
+        />
         <AdditionalInfo
           id='additionalInfo'
           name='additionalInfo'

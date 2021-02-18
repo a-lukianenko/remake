@@ -10,6 +10,68 @@ export const formHeaders = [
   "4. Capabilities",
 ];
 
+export const hobbies = [
+  { value: "art", label: "Art" },
+  { value: "sports", label: "Sport, fitness, aerobica and staff like that" },
+  {
+    value: "games",
+    label: "I just want to play games, I’m not living in this life",
+  },
+  { value: "nothing", label: "I’m a female... I’m doing nothing. Every day." },
+  {
+    value: "guitar",
+    label: "Guitar, guitar and guitar again. I’m in love with it.",
+  },
+  { value: "wtf", label: "WTF is 'hobbies'???" },
+];
+
+export const languages = [
+  { value: "English", label: "English" },
+  { value: "French", label: "French" },
+  { value: "Spanish", label: "Spanish" },
+  { value: "Mandarin", label: "Mandarin" },
+  { value: "Russian", label: "Russian" },
+  { value: "Portuguese", label: "Portuguese" },
+  { value: "German", label: "German" },
+  { value: "Japanese", label: "Japanese" },
+  { value: "Hindi", label: "Hindi" },
+  { value: "Malay", label: "Malay" },
+  { value: "Persian", label: "Persian" },
+  { value: "Swahili", label: "Swahili" },
+  { value: "Tamil", label: "Tamil" },
+  { value: "Italian", label: "Italian" },
+  { value: "Dutch", label: "Dutch" },
+  { value: "Bengali", label: "Bengali" },
+  { value: "Turkish", label: "Turkish" },
+  { value: "Vietnamese", label: "Vietnamese" },
+  { value: "Polish", label: "Polish" },
+  { value: "Javanese", label: "Javanese" },
+  { value: "Punjabi", label: "Punjabi" },
+  { value: "Thai", label: "Thai" },
+  { value: "Korean", label: "Korean" },
+];
+
+export const skills = [
+  { value: "HTML", label: "HTML" },
+  { value: "CSS", label: "CSS" },
+  { value: "JavaScript", label: "JavaScript" },
+  { value: "React", label: "React" },
+  { value: "Angular", label: "Angular" },
+  { value: "jQuery", label: "jQuery" },
+  { value: "NodeJS", label: "NodeJS" },
+  { value: "Python", label: "Python" },
+  { value: "PHP", label: "PHP" },
+  { value: "Ruby on Rails", label: "Ruby on Rails" },
+  { value: "SQL", label: "SQL" },
+  { value: "BackboneJS", label: "BackboneJS" },
+  { value: "Web Design", label: "Web Design" },
+  { value: "Project Management", label: "Project Management" },
+  { value: "Git", label: "Git" },
+  { value: "Docker", label: "Docker" },
+  { value: "AWS Lambda", label: "AWS Lambda" },
+  { value: "Firebase", label: "Firebase" },
+];
+
 export const initialValues = {
   avatar: "",
   username: "andri",
@@ -20,7 +82,7 @@ export const initialValues = {
   email: "a@a.com",
   address: "",
   gender: "male",
-  birthDate: new Date(),
+  birthDate: new Date(1, 1, 1991),
   company: "brocoders",
   github: "",
   facebook: "",
@@ -29,7 +91,7 @@ export const initialValues = {
   phone1: "",
   phone2: "",
   phone3: "",
-  skils: [],
+  skills: [],
   additionalInfo: "",
   hobbies: [],
 };
@@ -95,7 +157,7 @@ export const validationSchema = {
     ),
   }),
   capabilities: object({
-    skils: array(string()).min(3, "Minimum 3 skills").required("required"),
+    skills: array(string()).min(3, "Minimum 3 skills").required("required"),
     additionalInfo: string().max(300, "Maximum 300 characters"),
     hobbies: array(string()),
   }),

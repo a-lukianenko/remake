@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { TextInput } from "components/Inputs/TextInput/TextInput";
-import { LanguageInput } from "components/Inputs/SelectInput/LanguageInput";
 import { useFormikContext } from "formik";
+import { TextInput } from "components/Inputs/TextInput/TextInput";
+import { SelectInput } from "components/Inputs/SelectInput/SelectInput";
 import { TelInput } from "components/Inputs/TelInput/TelInput";
 import { ReactComponent as Add } from "assets/img/add.svg";
+import { languages } from "utils/formData";
 
 export const Contacts = () => {
   const {
@@ -60,7 +61,13 @@ export const Contacts = () => {
           name='facebook'
         />
 
-        <LanguageInput id='language' name='language' label='Main language' />
+        <SelectInput
+          id='languages'
+          name='languages'
+          label='Main language'
+          placeholder={"Select a language"}
+          selectOptions={languages}
+        />
       </div>
       <div>
         <TelInput id='fax' label='Fax' name='fax' type='tel' />
