@@ -44,7 +44,13 @@ export const Contacts = () => {
   return (
     <div style={style.contacts}>
       <div>
-        <TextInput label='Company' type='text' id='company' name='company' />
+        <TextInput
+          label='Company'
+          type='text'
+          id='company'
+          name='company'
+          required
+        />
         <TextInput label='Github link' type='text' id='github' name='github' />
 
         <TextInput

@@ -23,7 +23,7 @@ export const TextInput = ({ label, type, ...props }) => {
     <div>
       <label htmlFor={props.id} className={labelText}>
         {label}
-        <span className={props.required ? required : ""}>&#42;</span>
+        {props.required ? <span className={required}>&#42;</span> : null}
 
         <input
           {...field}

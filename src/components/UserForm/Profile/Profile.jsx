@@ -1,7 +1,7 @@
 import { TextInput } from "components/Inputs/TextInput/TextInput";
 import { BirthDateInput } from "components/Inputs/BirthDateInput/BirthDateInput";
-import { RadioInput } from "./RadioInput";
-import { Address } from "./Address";
+import { RadioInputGroup } from "components/Inputs/RadioInput/RadioInputGroup";
+import { AddressInput } from "components/Inputs/AddressInput/AddressInput";
 
 export const Profile = () => {
   return (
@@ -24,9 +24,15 @@ export const Profile = () => {
         <BirthDateInput id='birthDate' label='Birth date' name='birthDate' />
       </div>
       <div>
-        <TextInput label='Email' type='email' id='email' name='email' />
+        <TextInput
+          label='Email'
+          type='email'
+          id='email'
+          name='email'
+          required
+        />
 
-        <Address
+        <AddressInput
           id='address'
           name='address'
           label='Address'
@@ -35,7 +41,11 @@ export const Profile = () => {
           placeholder='Search address'
         />
 
-        <RadioInput />
+        <RadioInputGroup
+          type='radio'
+          name='gender'
+          values={["male", "female"]}
+        />
       </div>
     </div>
   );

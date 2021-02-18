@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useField } from "formik";
 import PlacesAutocomplete from "react-places-autocomplete";
 
-export const Address = ({ label, id, ...props }) => {
+export const AddressInput = ({ label, id, ...props }) => {
   const [field, , helpers] = useField(props);
   const { setValue } = helpers;
   const { value, name } = field;
