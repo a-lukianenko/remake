@@ -1,11 +1,11 @@
 import { useField } from "formik";
 
 export const RadioInput = ({ name, value, type }) => {
-  const [field] = useField({ name, type, value });
+  const [field] = useField({ name, type, value: value.value });
   return (
-    <label htmlFor={value}>
-      <input {...field} type={type} id={value} />
-      <span>{value}</span>
+    <label htmlFor={value.value}>
+      <input {...field} type={type} id={value.value} />
+      <span>{value.label}</span>
     </label>
   );
 };

@@ -44,7 +44,11 @@ export const Profile = () => {
         <RadioInputGroup
           type='radio'
           name='gender'
-          values={["male", "female"]}
+          label='Gender'
+          values={[
+            { value: "male", label: "male" },
+            { value: "female", label: "female" },
+          ]}
         />
       </div>
     </div>

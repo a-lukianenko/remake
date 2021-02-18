@@ -1,17 +1,15 @@
 import { useField } from "formik";
 
-export const AdditionalInfo = ({ label, ...props }) => {
+export const TextAreaInput = ({ label, id, isResizable, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
     <>
-      <label htmlFor={props.id}>{label}</label>
+      <label htmlFor={id}>{label}</label>
       <textarea
         {...field}
         {...props}
-        rows='5'
-        cols='33'
-        style={{ resize: "none" }}
+        style={{ resize: isResizable ? "both" : "none" }}
       />
       {meta.touched && meta.error ? (
         <div className='error'>{meta.error}</div>
