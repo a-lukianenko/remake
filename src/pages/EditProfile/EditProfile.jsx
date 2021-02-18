@@ -1,22 +1,26 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { style } from "../UserProfile/UserProfile";
+import {
+  textCentered,
+  backToUsers,
+  h2,
+} from "../UserProfile/UserProfile.module.css";
 
 export const EditProfile = ({ match }) => {
   const { userId, section } = match.params;
   const users = useSelector(state => state.users);
-  const user = users.find(user => user.account.username === userId);
+  const user = users.find(user => user.username === userId);
 
   return (
-    <section style={style.textCentered}>
-      <div style={style.backToUsers}>
+    <section className={textCentered}>
+      <div className={backToUsers}>
         <Link to={`/users/${userId}`} className='button'>
           &#8592; User profile
         </Link>
-        <h2 style={style.h2}>Editing</h2>
+        <h2 className={h2}>Editing</h2>
       </div>
       <h3>{section}</h3>
-      <p>{user.account.username}</p>
+      <p>{user.username}</p>
     </section>
   );
 };

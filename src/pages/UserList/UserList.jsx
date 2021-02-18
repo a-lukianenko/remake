@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import { NoUsers } from "./NoUsers";
-import { thead, userList } from "./UserList.module.css";
+import { thead, userList, name } from "./UserList.module.css";
 
 import { Link } from "react-router-dom";
 import { selectAllUsers } from "features/users/usersSlice";
+import { AvatarPic } from "components/AvatarPic/AvatarPic";
 
 export const UsersList = () => {
   const users = useSelector(selectAllUsers) || [];
@@ -23,7 +24,13 @@ export const UsersList = () => {
           return (
             <tr key={username}>
               <td>
-                <Link to={`users/${username}`}>
+                <AvatarPic
+                  src={user.avatar}
+                  width='70'
+                  height='70'
+                  style={{ display: "inline-block" }}
+                />
+                <Link to={`users/${username}`} className={name}>
                   {firstName} {lastName}
                   <br />
                   <small>{username}</small>

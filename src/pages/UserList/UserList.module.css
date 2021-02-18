@@ -6,3 +6,8 @@
 .thead {
   background: #4e86e4;
 }
+
+.name {
+  display: inline-block;
+  margin-left: 15px;
+}
