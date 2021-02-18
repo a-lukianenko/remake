@@ -5,7 +5,14 @@ import { formHeaders, validationSchema, initialValues } from "utils/formData";
 import { Profile } from "./Profile/Profile";
 import { Contacts } from "./Contacts/Contacts";
 import { Capabilities } from "./Capabilities/Capabilities";
-import { FormHeaders } from "./FormHeaders/FormHeaders";
+import { FormHeaders } from "../FormHeaders/FormHeaders";
+import {
+  form,
+  formStep,
+  buttons,
+  btnBack,
+  btnForward,
+} from "./UserForm.module.css";
 
 export const UserForm = () => {
   // to check notOneOf:
@@ -50,24 +57,25 @@ const FormStepper = ({ children, ...props }) => {
         isLastStep() ? await props.onSubmit(values) : stepForward()
       }
     >
-      <Form style={style.form} autoComplete='on'>
+      <Form className={form} autoComplete='on'>
         <FormHeaders
           headers={formHeaders}
           step={step}
           touched={touched.current}
         />
-        <div style={style.step}>{currentStep}</div>
-        <div style={style.btns}>
+        <div className={formStep}>{currentStep}</div>
+        <div className={buttons}>
           {step > 0 ? (
-            <button onClick={stepBack} type='button' style={style.btnBack}>
+            <button onClick={stepBack} type='button' className={btnBack}>
               Back
             </button>
           ) : null}
 
           <button
             type='submit'
-            className={isLastStep() ? "accent-button" : ""}
-            style={style.btnForward}
+            className={
+              isLastStep() ? `${btnForward} accent-button` : btnForward
+            }
           >
             {isLastStep() ? "Finish" : "Forward"}
           </button>
@@ -75,26 +83,4 @@ const FormStepper = ({ children, ...props }) => {
       </Form>
     </Formik>
   );
-};
-
-const style = {
-  form: {
-    margin: "2rem auto 6rem",
-    width: "80%",
-    padding: 0,
-    background: "#E7F0FF",
-  },
-  step: {
-    padding: "0 2rem",
-  },
-  btns: {
-    textAlign: "right",
-  },
-  btnBack: {
-    display: "inline-block",
-    backgroundColor: "#C1CFE0",
-  },
-  btnForward: {
-    marginLeft: "10px",
-  },
 };
