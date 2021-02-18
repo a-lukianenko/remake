@@ -82,7 +82,7 @@ export const initialValues = {
   email: "a@a.com",
   address: "",
   gender: "male",
-  birthDate: new Date(1, 1, 1991),
+  birthDate: new Date(1991, 1, 1),
   company: "brocoders",
   github: "",
   facebook: "",

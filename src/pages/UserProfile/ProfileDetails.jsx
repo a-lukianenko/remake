@@ -1,10 +1,25 @@
 import { Link } from "react-router-dom";
 
 export const ProfileDetails = ({ user, userId }) => {
-  const { username, password } = user.account;
-  const { firstName, lastName, birthDate, email, address } = user.personalInfo;
-  const { company, fax, facebook, phones } = user.contactDetails;
-  const { skills, hobbies } = user.capabilities;
+  const {
+    username,
+    password,
+    firstName,
+    lastName,
+    birthDate,
+    email,
+    address,
+    company,
+    fax,
+    facebook,
+    skills,
+    hobbies,
+  } = user;
+
+  const phones = [];
+  for (let i = 1; i <= 3; i++) {
+    user[`phone${i}`] ?? phones.push(user[`phone${i}`]);
+  }
 
   return (
     <table style={style}>
@@ -39,7 +54,7 @@ export const ProfileDetails = ({ user, userId }) => {
         <tr>
           <td></td>
           <td>Birthdate</td>
-          <td>{birthDate}</td>
+          <td>{new Date(birthDate).toLocaleDateString()}</td>
         </tr>
         <tr>
           <td></td>
@@ -67,8 +82,10 @@ export const ProfileDetails = ({ user, userId }) => {
         </tr>
         <tr>
           <td></td>
-          <td>Facebook NavLink</td>
-          <td>{facebook}</td>
+          <td>Facebook</td>
+          <td>
+            <a href={facebook}>{facebook}</a>
+          </td>
         </tr>
         {phones.map((phone, i) => (
           <tr key={i.toString()}>

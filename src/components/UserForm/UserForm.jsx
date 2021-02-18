@@ -1,5 +1,6 @@
 import { useState, useRef, Children } from "react";
 import { Formik, Form } from "formik";
+import { useHistory } from "react-router-dom";
 
 import { Account } from "./Account/Account";
 import { formHeaders, validationSchema, initialValues } from "utils/formData";
@@ -14,14 +15,25 @@ import {
   btnBack,
   btnForward,
 } from "./UserForm.module.css";
+import { addUserAsync } from "features/users/usersSlice";
+import { useDispatch } from "react-redux";
 
 export const UserForm = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   // to check notOneOf:
   // const usernames = ["one", "two"];
   // const emails = ["example@example.com", "gmail@gmail.com"];
   const formProps = {
     initialValues,
-    onSubmit: async values => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: async values => {
+      const payload = {
+        ...values,
+        birthDate: new Date(values.birthDate).getTime(),
+      };
+      dispatch(addUserAsync(payload));
+      history.push("/users");
+    },
   };
 
   return (

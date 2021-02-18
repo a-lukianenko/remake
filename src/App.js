@@ -11,7 +11,7 @@ import {
 
 import { Navbar } from "./components/Navbar/Navbar";
 import { AddUser } from "./pages/AddUser/AddUser";
-import { UsersList } from "./pages/UsersList/UsersList";
+import { UsersList } from "./pages/UserList/UserList";
 import { UserProfile } from "./pages/UserProfile/UserProfile";
 import { EditProfile } from "./pages/EditProfile/EditProfile";
 import { fetchUsersAsync, selectAllUsers } from "features/users/usersSlice";

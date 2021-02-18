@@ -43,7 +43,7 @@ const options = {
       state.isLoading = false;
       state.hasError = false;
       const users = action.payload;
-      state.users.push(users);
+      state.users.push(...users);
     },
     [fetchUsersAsync.rejected]: (state, action) => {
       state.isLoading = false;
