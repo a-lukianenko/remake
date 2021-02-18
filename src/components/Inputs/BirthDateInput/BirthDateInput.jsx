@@ -21,6 +21,7 @@ export const BirthDateInput = ({ label, id, ...props }) => {
       <label htmlFor={id}>{label}</label>
       <DatePicker
         selected={startDate}
+        dateFormat='dd/MM/yyyy'
         onChange={date => handleChange(date)}
         {...props}
         name={name}

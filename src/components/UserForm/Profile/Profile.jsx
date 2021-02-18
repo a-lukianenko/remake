@@ -1,5 +1,5 @@
-import { TextInput } from "../../Inputs/TextInput/TextInput";
-import { BirthDateInput } from "./BirthDateInput";
+import { TextInput } from "components/Inputs/TextInput/TextInput";
+import { BirthDateInput } from "components/Inputs/BirthDateInput/BirthDateInput";
 import { RadioInput } from "./RadioInput";
 import { Address } from "./Address";
 
@@ -12,12 +12,14 @@ export const Profile = () => {
           type='text'
           id='firstName'
           name='firstName'
+          required
         />
         <TextInput
           label='Last name'
           type='text'
           id='lastName'
           name='lastName'
+          required
         />
         <BirthDateInput id='birthDate' label='Birth date' name='birthDate' />
       </div>
