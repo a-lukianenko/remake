@@ -1,4 +1,5 @@
-import React from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 
 import {
@@ -13,8 +14,16 @@ import { AddUser } from "./pages/AddUser/AddUser";
 import { UsersList } from "./pages/UsersList/UsersList";
 import { UserProfile } from "./pages/UserProfile/UserProfile";
 import { EditProfile } from "./pages/EditProfile/EditProfile";
+import { fetchUsersAsync, selectAllUsers } from "features/users/usersSlice";
 
 export default function App() {
+  // const users = useSelector(selectAllUsers);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUsersAsync());
+  });
+
   return (
     <Router>
       <Navbar />

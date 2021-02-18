@@ -1,19 +1,19 @@
 import { NavLink, Link } from "react-router-dom";
-import css from "./Navbar.module.css";
+import { wrapper, navbar, menu, active } from "./Navbar.module.css";
 
 export const Navbar = () => {
   return (
-    <div className={css.wrapper}>
-      <nav className={css.Navbar}>
+    <div className={wrapper}>
+      <nav className={navbar}>
         <Link to='/add-user'>Remake</Link>
-        <ul className={css.menu}>
+        <ul className={menu}>
           <li>
-            <NavLink to='/add-user' activeClassName={css.active}>
+            <NavLink to='/add-user' activeClassName={active}>
               Add new user
             </NavLink>
           </li>
           <li>
-            <NavLink exact to='/users' activeClassName={css.active}>
+            <NavLink exact to='/users' activeClassName={active}>
               List of users
             </NavLink>
           </li>

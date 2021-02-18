@@ -1,5 +1,6 @@
 import { useState, useRef, Children } from "react";
 import { Formik, Form } from "formik";
+
 import { Account } from "./Account/Account";
 import { formHeaders, validationSchema, initialValues } from "utils/formData";
 import { Profile } from "./Profile/Profile";
@@ -53,9 +54,9 @@ const FormStepper = ({ children, ...props }) => {
     <Formik
       {...props}
       validationSchema={currentStep.props.validationSchema}
-      onSubmit={async values =>
-        isLastStep() ? await props.onSubmit(values) : stepForward()
-      }
+      onSubmit={async values => {
+        isLastStep() ? await props.onSubmit(values) : stepForward();
+      }}
     >
       <Form className={form} autoComplete='on'>
         <FormHeaders
