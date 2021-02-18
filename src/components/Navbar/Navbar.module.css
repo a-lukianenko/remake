@@ -7,7 +7,7 @@
   box-shadow: 0px 1px 5px #c1cede;
 }
 
-.Navbar {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +16,7 @@
   max-width: 1000px;
 }
 
-.Navbar a {
+.navbar a {
   color: #ffffff;
   opacity: 0.5;
   text-decoration: none;
