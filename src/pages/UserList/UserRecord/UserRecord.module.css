@@ -2,11 +2,17 @@
   display: inline-block;
   margin-left: 15px;
 }
-.deleteBtn {
-  padding: 0;
-  margin: 0;
-  margin-left: 1rem;
-  border: none;
-  color: #4e86e4;
-  background: none;
+
+.cell {
+  transform: translateX(0px);
+  transition: transform 0.2s;
+}
+
+.cellShifted {
+  transform: translateX(-50px);
+  transition: transform 0.2s;
+}
+
+.whiteBackground {
+  background: white;
 }

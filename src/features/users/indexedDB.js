@@ -12,7 +12,6 @@ export const addUserIDB = async user => {
   await db.collection("users").doc(key).set(user);
 };
 
-export const deleteUserIDB = async user => {
-  const key = await user.username;
-  await db.collection("users").doc(key).delete();
+export const deleteUserIDB = async username => {
+  await db.collection("users").doc(username).delete();
 };

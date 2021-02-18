@@ -19,9 +19,9 @@ export const addUserAsync = createAsyncThunk(
 
 export const deleteUserAsync = createAsyncThunk(
   "users/deleteUserAsync",
-  async user => {
-    await deleteUserIDB(user);
-    return user;
+  async username => {
+    await deleteUserIDB(username);
+    return username;
   }
 );
 
@@ -58,10 +58,11 @@ const options = {
     },
     // delete user
     [deleteUserAsync.fulfilled]: (state, action) => {
+      console.log(action);
       state.isLoading = false;
       state.hasError = false;
       state.users = state.users.filter(
-        user => user.username !== action.payload.username
+        user => user.username !== action.username
       );
     },
   },
