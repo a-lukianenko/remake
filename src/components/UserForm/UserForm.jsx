@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, Children, useMemo } from "react";
-import { Formik, Form, useFormik, FormikProvider } from "formik";
+import { Form, useFormik, FormikProvider } from "formik";
 import { useHistory } from "react-router-dom";
 
 import { Account } from "./Account/Account";
@@ -64,7 +64,7 @@ const FormStepper = ({ children }) => {
   // to check notOneOf:
   // const usernames = ["one", "two"];
   // const emails = ["example@example.com", "gmail@gmail.com"];
-  const getValidationScema = useMemo(() => validationSchema(step), [step]);
+  const getValidationScema = useMemo(() => validationSchema({ step }), [step]);
   const formProps = {
     initialValues: JSON.parse(localStorage.getItem("values")) || initialValues,
     enableReinitialize: true,
@@ -84,7 +84,6 @@ const FormStepper = ({ children }) => {
   };
 
   const formik = useFormik(formProps);
-  console.log("validation", formProps);
 
   const saveLocal = payload =>
     localStorage.setItem("values", JSON.stringify(payload));
