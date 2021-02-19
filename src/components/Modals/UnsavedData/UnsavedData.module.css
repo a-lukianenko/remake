@@ -1,0 +1,27 @@
+.modal {
+  display: flex;
+  align-items: center;
+  padding: 2px 30px;
+  margin-top: -24px;
+  background: #5e97f3;
+  color: white;
+  font-size: 14px;
+}
+
+.continueBtn {
+  margin: 0;
+  background-color: transparent;
+  outline: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.reset {
+  background-color: transparent;
+  outline: transparent;
+  border: none;
+  margin-left: auto;
+  margin-bottom: 0;
+  padding: 0;
+}
