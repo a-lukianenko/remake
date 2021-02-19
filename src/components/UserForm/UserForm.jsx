@@ -1,5 +1,5 @@
-import { useState, useRef, Children } from "react";
-import { Formik, Form } from "formik";
+import { useState, useRef, useEffect, Children, useMemo } from "react";
+import { Formik, Form, useFormik, FormikProvider } from "formik";
 import { useHistory } from "react-router-dom";
 
 import { Account } from "./Account/Account";
@@ -19,37 +19,79 @@ import { addUserAsync } from "features/users/usersSlice";
 import { useDispatch } from "react-redux";
 
 export const UserForm = () => {
+  // const dispatch = useDispatch();
+  // const history = useHistory();
+  // // to check notOneOf:
+  // // const usernames = ["one", "two"];
+  // // const emails = ["example@example.com", "gmail@gmail.com"];
+  // const formProps = {
+  //   initialValues: JSON.parse(localStorage.getItem("values")) || initialValues,
+  //   enableReinitialize: true,
+  //   validationSchema: validationSchema[step]
+  //   onSubmit: async values => {
+  //     const payload = {
+  //       ...values,
+  //       birthDate: new Date(values.birthDate).getTime(),
+  //     };
+  //     dispatch(addUserAsync(payload));
+  //     history.push("/users");
+  //   },
+  // };
+
+  // const saveLocal = payload =>
+  //   localStorage.setItem("values", JSON.stringify(payload));
+
+  // useEffect(() => {
+  //   document.addEventListener("beforeunload", () => saveLocal());
+  // });
+
+  return (
+    <FormStepper>
+      <Account />
+      <Profile />
+      <Contacts />
+      <Capabilities />
+    </FormStepper>
+  );
+};
+
+const FormStepper = ({ children }) => {
+  const steps = Children.toArray(children);
+  const [step, setStep] = useState(0);
+  const currentStep = steps[step];
   const dispatch = useDispatch();
   const history = useHistory();
   // to check notOneOf:
   // const usernames = ["one", "two"];
   // const emails = ["example@example.com", "gmail@gmail.com"];
+  const getValidationScema = useMemo(() => validationSchema(step), [step]);
   const formProps = {
-    initialValues,
+    initialValues: JSON.parse(localStorage.getItem("values")) || initialValues,
+    enableReinitialize: true,
+    validationSchema: getValidationScema,
     onSubmit: async values => {
-      const payload = {
-        ...values,
-        birthDate: new Date(values.birthDate).getTime(),
-      };
-      dispatch(addUserAsync(payload));
-      history.push("/users");
+      if (isLastStep()) {
+        const payload = {
+          ...values,
+          birthDate: new Date(values.birthDate).getTime(),
+        };
+        dispatch(addUserAsync(payload));
+        history.push("/users");
+      } else {
+        stepForward();
+      }
     },
   };
 
-  return (
-    <FormStepper {...formProps}>
-      <Account validationSchema={validationSchema.account()} />
-      <Profile validationSchema={validationSchema.profile()} />
-      <Contacts validationSchema={validationSchema.contacts} />
-      <Capabilities validationSchema={validationSchema.capabilities} />
-    </FormStepper>
-  );
-};
+  const formik = useFormik(formProps);
+  console.log("validation", formProps);
 
-const FormStepper = ({ children, ...props }) => {
-  const steps = Children.toArray(children);
-  const [step, setStep] = useState(0);
-  const currentStep = steps[step];
+  const saveLocal = payload =>
+    localStorage.setItem("values", JSON.stringify(payload));
+
+  useEffect(() => {
+    document.addEventListener("beforeunload", () => saveLocal());
+  });
 
   const touched = useRef(0);
 
@@ -63,12 +105,13 @@ const FormStepper = ({ children, ...props }) => {
   const isLastStep = () => step === steps.length - 1;
 
   return (
-    <Formik
-      {...props}
-      validationSchema={currentStep.props.validationSchema}
-      onSubmit={async values => {
-        isLastStep() ? await props.onSubmit(values) : stepForward();
-      }}
+    <FormikProvider
+      value={formik}
+      // {...props}
+      // validationSchema={currentStep.props.validationSchema}
+      // onSubmit={async values => {
+      //   isLastStep() ? await props.onSubmit(values) : stepForward();
+      // }}
     >
       <Form className={form} autoComplete='on' noValidate>
         <FormHeaders
@@ -94,6 +137,6 @@ const FormStepper = ({ children, ...props }) => {
           </button>
         </div>
       </Form>
-    </Formik>
+    </FormikProvider>
   );
 };

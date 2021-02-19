@@ -96,43 +96,38 @@ export const initialValues = {
   hobbies: [],
 };
 
-export const validationSchema = {
-  account(usernames = []) {
-    return object({
-      avatar: string(),
-      username: string()
-        .notOneOf(usernames, "username already taken")
-        .required("required"),
-      password: string()
-        .min(8, "Must be minimum 8 characters")
-        .matches(
-          /(?=.*[A-Z])/,
-          "Password must include at least 1 capital letter"
-        )
-        .matches(/(?=.*\d)/, "Password must include at least 1 digit")
-        .required("required"),
-      passwordRepeat: string()
-        .oneOf([ref("password"), null], "Passwords don't match")
-        .required("required"),
-    });
-  },
-  profile(emails = []) {
-    return object({
-      firstName: string().required("required"),
-      lastName: string().required("required"),
-      birthDate: date().max(
-        subYears(new Date(), 18),
-        "you must be at least 18 years old"
-      ),
-      email: string()
-        .email("Invalid email")
-        .notOneOf(emails, "email already registered")
-        .required("required"),
-      address: string(),
-      gender: string().oneOf(["male", "female"]).required("required"),
-    });
-  },
-  contacts: object({
+export const validationSchema = (usernames = [], emails = [], step = 0) => {
+  const account = object({
+    avatar: string(),
+    username: string()
+      // .notOneOf(usernames, "username already taken")
+      .required("required"),
+    password: string()
+      .min(8, "Must be minimum 8 characters")
+      .matches(/(?=.*[A-Z])/, "Password must include at least 1 capital letter")
+      .matches(/(?=.*\d)/, "Password must include at least 1 digit")
+      .required("required"),
+    passwordRepeat: string()
+      .oneOf([ref("password"), null], "Passwords don't match")
+      .required("required"),
+  });
+
+  const profile = object({
+    firstName: string().required("required"),
+    lastName: string().required("required"),
+    birthDate: date().max(
+      subYears(new Date(), 18),
+      "you must be at least 18 years old"
+    ),
+    email: string()
+      .email("Invalid email")
+      .notOneOf(emails, "email already registered")
+      .required("required"),
+    address: string(),
+    gender: string().oneOf(["male", "female"]).required("required"),
+  });
+
+  const contacts = object({
     company: string().required("required"),
     github: string(),
     facebook: string(),
@@ -155,10 +150,13 @@ export const validationSchema = {
       phonePattern,
       "must match the pattern +7 (XXX) XXX-XX-XX"
     ),
-  }),
-  capabilities: object({
+  });
+
+  const capabilities = object({
     skills: array(string()).min(3, "Minimum 3 skills").required("required"),
     additionalInfo: string().max(300, "Maximum 300 characters"),
     hobbies: array(string()),
-  }),
+  });
+
+  return [account, profile, contacts, capabilities][step];
 };
