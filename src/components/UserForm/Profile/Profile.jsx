@@ -22,7 +22,7 @@ export const Profile = () => {
           name='lastName'
           required
         />
-        <BirthDateInput id='birthDate' label='Birth date' name='birthDate' />
+        {/* <BirthDateInput id='birthDate' label='Birth date' name='birthDate' /> */}
       </div>
       <div>
         <TextInput

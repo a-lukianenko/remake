@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./App.css";
 
 import {
@@ -14,10 +14,9 @@ import { AddUser } from "./pages/AddUser/AddUser";
 import { UsersList } from "./pages/UserList/UserList";
 import { UserProfile } from "./pages/UserProfile/UserProfile";
 import { EditProfile } from "./pages/EditProfile/EditProfile";
-import { fetchUsersAsync, selectAllUsers } from "features/users/usersSlice";
+import { fetchUsersAsync } from "features/users/usersSlice";
 
 export default function App() {
-  // const users = useSelector(selectAllUsers);
   const dispatch = useDispatch();
 
   useEffect(() => {

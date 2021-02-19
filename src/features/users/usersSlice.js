@@ -42,8 +42,7 @@ const options = {
     [fetchUsersAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.hasError = false;
-      const users = action.payload;
-      state.users.push(...users);
+      state.users = action.payload;
     },
     [fetchUsersAsync.rejected]: (state, action) => {
       state.isLoading = false;
@@ -53,17 +52,13 @@ const options = {
     [addUserAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.hasError = false;
-      const user = action.payload;
-      state.users.push(user);
+      state.users.push(action.payload);
     },
     // delete user
     [deleteUserAsync.fulfilled]: (state, action) => {
-      console.log(action);
       state.isLoading = false;
       state.hasError = false;
-      state.users = state.users.filter(
-        user => user.username !== action.username
-      );
+      state.users = state.users.filter(u => u.username !== action.payload);
     },
   },
 };

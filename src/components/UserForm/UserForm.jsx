@@ -70,7 +70,7 @@ const FormStepper = ({ children, ...props }) => {
         isLastStep() ? await props.onSubmit(values) : stepForward();
       }}
     >
-      <Form className={form} autoComplete='on'>
+      <Form className={form} autoComplete='on' noValidate>
         <FormHeaders
           headers={formHeaders}
           step={step}
