@@ -19,32 +19,6 @@ import { addUserAsync } from "features/users/usersSlice";
 import { useDispatch } from "react-redux";
 
 export const UserForm = () => {
-  // const dispatch = useDispatch();
-  // const history = useHistory();
-  // // to check notOneOf:
-  // // const usernames = ["one", "two"];
-  // // const emails = ["example@example.com", "gmail@gmail.com"];
-  // const formProps = {
-  //   initialValues: JSON.parse(localStorage.getItem("values")) || initialValues,
-  //   enableReinitialize: true,
-  //   validationSchema: validationSchema[step]
-  //   onSubmit: async values => {
-  //     const payload = {
-  //       ...values,
-  //       birthDate: new Date(values.birthDate).getTime(),
-  //     };
-  //     dispatch(addUserAsync(payload));
-  //     history.push("/users");
-  //   },
-  // };
-
-  // const saveLocal = payload =>
-  //   localStorage.setItem("values", JSON.stringify(payload));
-
-  // useEffect(() => {
-  //   document.addEventListener("beforeunload", () => saveLocal());
-  // });
-
   return (
     <FormStepper>
       <Account />
@@ -58,15 +32,24 @@ export const UserForm = () => {
 const FormStepper = ({ children }) => {
   const steps = Children.toArray(children);
   const [step, setStep] = useState(0);
+
   const currentStep = steps[step];
   const dispatch = useDispatch();
   const history = useHistory();
+
   // to check notOneOf:
   // const usernames = ["one", "two"];
   // const emails = ["example@example.com", "gmail@gmail.com"];
+  const getInitialValues = fallbackValues => {
+    const values = JSON.parse(localStorage.getItem("values"));
+    return values
+      ? { ...values, birthDate: new Date(values.birthDate) }
+      : fallbackValues;
+  };
+
   const getValidationScema = useMemo(() => validationSchema({ step }), [step]);
   const formProps = {
-    initialValues: JSON.parse(localStorage.getItem("values")) || initialValues,
+    initialValues: getInitialValues(initialValues),
     enableReinitialize: true,
     validationSchema: getValidationScema,
     onSubmit: async values => {
@@ -84,13 +67,20 @@ const FormStepper = ({ children }) => {
   };
 
   const formik = useFormik(formProps);
+  const saveLocal = values => {
+    localStorage.setItem("values", JSON.stringify(values));
+  };
 
-  const saveLocal = payload =>
-    localStorage.setItem("values", JSON.stringify(payload));
+  const valuesRef = useRef(formik.values);
+  useEffect(() => {
+    valuesRef.current = formik.values;
+  }, [formik.values]);
 
   useEffect(() => {
-    document.addEventListener("beforeunload", () => saveLocal());
-  });
+    return () => {
+      saveLocal(valuesRef.current);
+    };
+  }, []);
 
   const touched = useRef(0);
 
@@ -104,14 +94,7 @@ const FormStepper = ({ children }) => {
   const isLastStep = () => step === steps.length - 1;
 
   return (
-    <FormikProvider
-      value={formik}
-      // {...props}
-      // validationSchema={currentStep.props.validationSchema}
-      // onSubmit={async values => {
-      //   isLastStep() ? await props.onSubmit(values) : stepForward();
-      // }}
-    >
+    <FormikProvider value={formik}>
       <Form className={form} autoComplete='on' noValidate>
         <FormHeaders
           headers={formHeaders}

@@ -100,7 +100,7 @@ export const validationSchema = ({ usernames = [], emails = [], step = 0 }) => {
   const account = object({
     avatar: string(),
     username: string()
-      // .notOneOf(usernames, "username already taken")
+      .notOneOf(usernames, "username already taken")
       .required("required"),
     password: string()
       .min(8, "Must be minimum 8 characters")
