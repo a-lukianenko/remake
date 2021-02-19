@@ -40,11 +40,11 @@ const FormStepper = ({ children }) => {
   // to check notOneOf:
   // const usernames = ["one", "two"];
   // const emails = ["example@example.com", "gmail@gmail.com"];
-  const getInitialValues = fallbackValues => {
+  const getInitialValues = fallbackValue => {
     const values = JSON.parse(localStorage.getItem("values"));
     return values
       ? { ...values, birthDate: new Date(values.birthDate) }
-      : fallbackValues;
+      : fallbackValue;
   };
 
   const getValidationScema = useMemo(() => validationSchema({ step }), [step]);
@@ -67,8 +67,8 @@ const FormStepper = ({ children }) => {
   };
 
   const formik = useFormik(formProps);
-  const saveLocal = values => {
-    localStorage.setItem("values", JSON.stringify(values));
+  const saveLocal = () => {
+    localStorage.setItem("values", JSON.stringify(valuesRef.current));
   };
 
   const valuesRef = useRef(formik.values);
@@ -77,8 +77,10 @@ const FormStepper = ({ children }) => {
   }, [formik.values]);
 
   useEffect(() => {
+    document.addEventListener("onbeforeunload", saveLocal);
     return () => {
-      saveLocal(valuesRef.current);
+      saveLocal();
+      document.removeEventListener("onbeforeunload", saveLocal);
     };
   }, []);
 
