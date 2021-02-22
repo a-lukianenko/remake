@@ -72,7 +72,7 @@ export const skills = [
   { value: "Firebase", label: "Firebase" },
 ];
 
-export const initialValues = {
+export const initialValuesFilled = {
   avatar: "",
   username: "andri",
   password: "111aaAAAAaa",
@@ -87,6 +87,30 @@ export const initialValues = {
   github: "",
   facebook: "",
   languages: ["English"],
+  fax: "",
+  phone1: "",
+  phone2: "",
+  phone3: "",
+  skills: [],
+  additionalInfo: "",
+  hobbies: [],
+};
+
+export const initialValuesEmpty = {
+  avatar: "",
+  username: "",
+  password: "",
+  passwordRepeat: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  address: "",
+  gender: "male",
+  birthDate: new Date(),
+  company: "",
+  github: "",
+  facebook: "",
+  languages: [],
   fax: "",
   phone1: "",
   phone2: "",
