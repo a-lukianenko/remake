@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./ProfileDetails.module.css";
 
 export const ProfileDetails = ({ user, userId }) => {
   const {
@@ -27,7 +28,15 @@ export const ProfileDetails = ({ user, userId }) => {
         {/* Account */}
         <tr>
           <td>
-            Account <Link to={`/users/${userId}/edit/account`}>&#9998;</Link>
+            Account{" "}
+            <Link
+              to={{
+                pathname: `/users/${userId}/edit`,
+                state: { formEditStep: 0 },
+              }}
+            >
+              &#9998;
+            </Link>
           </td>
           <td>User name</td>
           <td>{username}</td>
@@ -35,13 +44,22 @@ export const ProfileDetails = ({ user, userId }) => {
         <tr>
           <td></td>
           <td>Password</td>
-          <td>{password}</td>
+          <td>{password.replaceAll(/./g, "*")}</td>
         </tr>
 
         {/* Personal */}
         <tr>
           <td>
-            Personal <Link to={`/users/${userId}/edit/personal`}>&#9998;</Link>
+            Personal{" "}
+            <Link
+              to={{
+                pathname: `/users/${userId}/edit`,
+                state: { formEditStep: 1 },
+              }}
+            >
+              {" "}
+              &#9998;
+            </Link>
           </td>
           <td>First name</td>
           <td>{firstName}</td>
@@ -70,7 +88,16 @@ export const ProfileDetails = ({ user, userId }) => {
         {/* Contact details */}
         <tr>
           <td>
-            Contacts <Link to={`/users/${userId}/edit/contacts`}>&#9998;</Link>
+            Contacts{" "}
+            <Link
+              to={{
+                pathname: `/users/${userId}/edit`,
+                state: { formEditStep: 2 },
+              }}
+            >
+              {" "}
+              &#9998;
+            </Link>
           </td>
           <td>Company</td>
           <td>{company}</td>
@@ -99,7 +126,15 @@ export const ProfileDetails = ({ user, userId }) => {
         <tr>
           <td>
             Capabilities{" "}
-            <Link to={`/users/${userId}/edit/capabilities`}>&#9998;</Link>
+            <Link
+              to={{
+                pathname: `/users/${userId}/edit`,
+                state: { formEditStep: 3 },
+              }}
+            >
+              {" "}
+              &#9998;
+            </Link>
           </td>
           <td>Skills</td>
           <td>{skills.join(", ")}</td>
@@ -107,7 +142,11 @@ export const ProfileDetails = ({ user, userId }) => {
         <tr>
           <td></td>
           <td>Hobbies</td>
-          <td>{hobbies.join(", ")}</td>
+          <td>
+            {hobbies.map(hobby => (
+              <p key={hobby}>{hobby}</p>
+            ))}
+          </td>
         </tr>
       </tbody>
     </table>

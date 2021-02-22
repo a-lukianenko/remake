@@ -30,12 +30,7 @@ export default function App() {
         <Route exact path='/add-user' component={AddUser} />
         <Route exact path='/users' component={UsersList} />
         <Route exact path='/users/:userId' component={UserProfile} />
-        <Route
-          exact
-          path='/users/:userId/edit/:section'
-          component={EditProfile}
-        />
-        <Redirect from='/users/:userId/edit' to='/users/:userId/edit/account' />
+        <Route exact path='/users/:userId/edit' component={EditProfile} />
         <Redirect to='/add-user' />
       </Switch>
     </Router>

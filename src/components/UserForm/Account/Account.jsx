@@ -1,7 +1,7 @@
 import { AvatarInput } from "components/Inputs/AvatarInput/AvatarInput";
 import { TextInput } from "components/Inputs/TextInput/TextInput";
 
-export const Account = () => {
+export const Account = ({ isEditing }) => {
   return (
     <div>
       <AvatarInput name='avatar' />
@@ -15,7 +15,7 @@ export const Account = () => {
 
       <TextInput
         label='Password'
-        type='password'
+        type={isEditing ? "text" : "password"}
         id='password'
         name='password'
         className='password-field'
@@ -24,7 +24,7 @@ export const Account = () => {
 
       <TextInput
         label='Repeat password'
-        type='password'
+        type={isEditing ? "text" : "password"}
         id='passwordRepeat'
         name='passwordRepeat'
         className='password-field'

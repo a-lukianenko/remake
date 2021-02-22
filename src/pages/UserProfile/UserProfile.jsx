@@ -7,12 +7,17 @@ import { textCentered, backToUsers, h2, flex } from "./UserProfile.module.css";
 
 export const UserProfile = ({ match }) => {
   const users = useSelector(selectAllUsers);
+  const isLoading = useSelector(state => state.users.isLoading);
+  const hasError = useSelector(state => state.users.hasError);
   const { userId } = match.params;
   const user = users.find(user => user.username === userId);
 
   if (!user) return <h3>No user under ID: {userId}</h3>;
 
   const { firstName, lastName } = user;
+
+  if (isLoading) return <div>Loading...</div>;
+  if (hasError) return <div>Error...</div>;
 
   return (
     <section className={textCentered}>

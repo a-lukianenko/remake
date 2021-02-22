@@ -53,7 +53,13 @@ export const UserRecord = ({ user }) => {
       <td>{lastUpdate || "TODO"}</td>
       <td className={isDelete ? whiteBackground : ""}>
         {!isDelete && (
-          <Link to={`/users/${username}/edit/account`} title='edit'>
+          <Link
+            to={{
+              pathname: `/users/${username}/edit`,
+              state: { formEditStep: 0 },
+            }}
+            title='edit'
+          >
             &#9998;
           </Link>
         )}
