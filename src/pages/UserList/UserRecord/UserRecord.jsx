@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { formatDistance } from "date-fns";
+
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
 import { ConfirmButton } from "components/ConfirmButton/ConfirmButton";
 
@@ -50,7 +52,12 @@ export const UserRecord = ({ user }) => {
       </td>
       <td>{company}</td>
       <td>{email}</td>
-      <td>{lastUpdate || "TODO"}</td>
+      <td>
+        {formatDistance(lastUpdate, Date.now(), {
+          includeSeconds: true,
+          addSuffix: true,
+        })}
+      </td>
       <td className={isDelete ? whiteBackground : ""}>
         {!isDelete && (
           <Link
