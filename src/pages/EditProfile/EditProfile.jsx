@@ -28,7 +28,7 @@ export const EditProfile = ({ match }) => {
         </Link>
         <h2 className={h2}>Editing</h2>
       </div>
-      <UserForm initialValues={user} isEditing={true} dbKey={user.username} />
+      <UserForm valuesToEdit={user} userKey={user.username} />
     </section>
   );
 };

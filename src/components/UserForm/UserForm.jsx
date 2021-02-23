@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect, Children, useMemo } from "react";
 import { Form, useFormik, FormikProvider } from "formik";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import isEqual from "lodash.isequal";
 
 import { Account } from "./Account/Account";
 import {
   formHeaders,
   validationSchema,
-  initialValuesFilled,
+  initialValuesFilled, // for testing
   initialValuesEmpty,
 } from "utils/formData";
 import { Profile } from "./Profile/Profile";
@@ -24,14 +25,14 @@ import { addUserAsync, updateUserAsync } from "features/users/usersSlice";
 import { useDispatch } from "react-redux";
 import { UnsavedData } from "components/Modals/UnsavedData/UnsavedData";
 
-export const UserForm = ({ initialValues, isEditing, dbKey }) => {
+export const UserForm = ({ valuesToEdit, userKey }) => {
   return (
     <FormStepper
-      initialValues={initialValues}
-      isEditing={isEditing}
-      dbKey={dbKey}
+      valuesToEdit={valuesToEdit}
+      isEditing={Boolean(valuesToEdit)}
+      userKey={userKey}
     >
-      <Account isEditing={isEditing} />
+      <Account isEditing={Boolean(valuesToEdit)} />
       <Profile />
       <Contacts />
       <Capabilities />
@@ -42,17 +43,29 @@ export const UserForm = ({ initialValues, isEditing, dbKey }) => {
 const FormStepper = ({ children, ...props }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const formEditStep = history.location.state?.formEditStep || null;
+  const formEditStep = history.location.state?.formEditStep;
 
   const steps = Children.toArray(children);
-  const [isIncomplete, setIsIncomplete] = useState(
-    () => Boolean(localStorage.getItem("values")) || false
-  );
+
+  const getStorageValues = () => {
+    const values = JSON.parse(localStorage.getItem("values"));
+    return { ...values, birthDate: new Date(values.birthDate) };
+  };
+
+  const [continueForm, setContinueForm] = useState(() => {
+    const initial = {
+      ...initialValuesEmpty,
+      step: 0,
+    };
+    const isSymmetric = isEqual(getStorageValues(), initial);
+    const showPrompt = Boolean(localStorage.getItem("values")) && isSymmetric;
+    return !showPrompt;
+  });
+
   const [step, setStep] = useState(() => {
     return (
       formEditStep ||
-      (localStorage.getItem("values") &&
-        JSON.parse(localStorage.getItem("values")).step) ||
+      (localStorage.getItem("values") && getStorageValues()?.step) ||
       0
     );
   });
@@ -62,19 +75,13 @@ const FormStepper = ({ children, ...props }) => {
   // TODO:  check notOneOf:
   // const usernames = ["one", "two"];
   // const emails = ["example@example.com", "gmail@gmail.com"];
-  const getStorageValues = () => {
-    const values = JSON.parse(localStorage.getItem("values"));
-    return { ...values, birthDate: new Date(values.birthDate) };
-  };
 
   const getInitialValues = () => {
-    if (props.isEditing) {
-      return props.initialValues;
-    } else {
-      return localStorage.getItem("values")
-        ? getStorageValues()
-        : initialValuesFilled;
-    }
+    if (props.valuesToEdit) return props.valuesToEdit;
+
+    return localStorage.getItem("values")
+      ? getStorageValues()
+      : initialValuesEmpty;
   };
 
   const getValidationScema = useMemo(() => validationSchema({ step }), [step]);
@@ -82,25 +89,29 @@ const FormStepper = ({ children, ...props }) => {
     initialValues: getInitialValues(),
     enableReinitialize: true,
     validationSchema: getValidationScema,
-    onSubmit: async values => {
-      if (props.isEditing) {
+    onSubmit: async (values, actions) => {
+      if (props.valuesToEdit) {
         const payload = {
           user: {
             ...values,
             birthDate: new Date(values.birthDate).getTime(),
             lastUpdate: Date.now(),
           },
-          key: props.dbKey,
+          key: props.userKey,
           history,
         };
-        // localStorage.clear();
-        // stepRef.current = 0;
-        // valuesRef.current = initialValuesEmpty;
+        valuesRef.current = initialValuesEmpty;
+        stepRef.current = 0;
+        localStorage.clear();
         dispatch(updateUserAsync(payload));
-      } else if (isLastStep() && !props.isEditing) {
+      } else if (isLastStep() && !props.valuesToEdit) {
+        // const res = await fetch(values.avatar);
+        // const blob = res.blob;
+        // console.log(blob);
         const payload = {
           ...values,
           birthDate: new Date(values.birthDate).getTime(),
+          // avatar: blob,
         };
         dispatch(addUserAsync(payload));
         localStorage.clear();
@@ -117,41 +128,35 @@ const FormStepper = ({ children, ...props }) => {
   const handleReset = () => {
     formik.resetForm();
     localStorage.clear();
-    setIsIncomplete(false);
+    setContinueForm(false);
     setStep(0);
   };
   const handleContinue = () => {
-    setIsIncomplete(false);
+    setContinueForm(false);
   };
 
   const valuesRef = useRef(formik.values);
   const stepRef = useRef(step);
-  const touchedRef = useRef(formik.touched);
 
   useEffect(() => {
     valuesRef.current = formik.values;
     stepRef.current = step;
-    touchedRef.current = formik.touched;
-  }, [formik.values, step, formik.touched]);
+  }, [formik.values, step]);
 
   const saveLocal = () => {
-    // const isTouched = Object.keys(touchedRef.current) > 0;
-    // if (isTouched)
     localStorage.setItem(
       "values",
       JSON.stringify({ ...valuesRef.current, step: stepRef.current })
     );
   };
 
-  console.log(touchedRef.current);
-
   useEffect(() => {
-    !props.isEditing && window.addEventListener("beforeunload", saveLocal);
+    window.addEventListener("beforeunload", saveLocal);
     return () => {
-      !props.isEditing && saveLocal();
-      !props.isEditing && window.removeEventListener("beforeunload", saveLocal);
+      saveLocal();
+      window.removeEventListener("beforeunload", saveLocal);
     };
-  }, [props.isEditing]);
+  }, []);
 
   const touched = useRef(0);
 
@@ -163,7 +168,7 @@ const FormStepper = ({ children, ...props }) => {
     });
   };
   const isLastStep = () => step === steps.length - 1;
-  const handleStepNavigation = step => {
+  const toStep = step => {
     setStep(step);
   };
 
@@ -174,15 +179,15 @@ const FormStepper = ({ children, ...props }) => {
           headers={formHeaders}
           step={step}
           touched={touched.current}
-          isEditing={props.isEditing}
-          handleStepNavigation={handleStepNavigation}
+          isEditing={Boolean(props.valuesToEdit)}
+          handleStepNavigation={toStep}
         />
-        {isIncomplete && !props.isEditing && (
+        {continueForm && !props.valuesToEdit && (
           <UnsavedData resetForm={handleReset} continueForm={handleContinue} />
         )}
         <div className={formStep}>{currentStep}</div>
         <div className={buttons}>
-          {step > 0 && !props.isEditing ? (
+          {step > 0 && !props.valuesToEdit ? (
             <button onClick={stepBack} type='button' className={btnBack}>
               Back
             </button>
@@ -191,14 +196,14 @@ const FormStepper = ({ children, ...props }) => {
           <button
             type='submit'
             className={
-              isLastStep() && !props.isEditing
+              isLastStep() && !props.valuesToEdit
                 ? `${btnForward} accent-button`
                 : btnForward
             }
           >
-            {props.isEditing && "Save"}
-            {!props.isEditing && !isLastStep() && "Forward"}
-            {!props.isEditing && isLastStep() && "Finish"}
+            {props.valuesToEdit && "Save"}
+            {!props.valuesToEdit && !isLastStep() && "Forward"}
+            {!props.valuesToEdit && isLastStep() && "Finish"}
           </button>
         </div>
       </Form>

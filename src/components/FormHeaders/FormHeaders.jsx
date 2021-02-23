@@ -31,7 +31,7 @@ export const FormHeaders = ({
             key={header}
             className={className}
             onClick={isEditing ? () => handleStepNavigation(i) : null}
-            style={isEditing && { cursor: "pointer" }}
+            style={isEditing ? { cursor: "pointer" } : null}
           >
             {header}
           </h3>
