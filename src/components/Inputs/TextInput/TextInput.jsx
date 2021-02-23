@@ -9,6 +9,8 @@ import {
   password,
   showPassword,
 } from "./TextInput.module.css";
+import { ReactComponent as Eye } from "assets/img/eye.svg";
+import { ReactComponent as EyeStrike } from "assets/img/eyeStrike.svg";
 
 export const TextInput = ({ label, type, ...props }) => {
   const [field, meta] = useField(props);
@@ -40,7 +42,7 @@ export const TextInput = ({ label, type, ...props }) => {
                 : `${password} ${showPassword}`
             }
           >
-            &#128065;
+            {inputType === "password" ? <Eye /> : <EyeStrike />}
           </span>
         )}
       </label>

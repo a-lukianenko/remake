@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fieldGroup {
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  margin-top: -3rem;
+}

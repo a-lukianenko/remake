@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useField } from "formik";
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
-import { fileInput, label } from "./AvatarInput.module.css";
+import { container, fileInput, label } from "./AvatarInput.module.css";
 
 export const AvatarInput = ({ name, avatarStyle }) => {
   const [field, meta, helpers] = useField(name);
@@ -34,11 +34,11 @@ export const AvatarInput = ({ name, avatarStyle }) => {
   };
 
   return (
-    <div>
+    <div className={container}>
       <AvatarPic
         src={avatarUrl}
-        width='100px'
-        height='100px'
+        width='170px'
+        height='170px'
         style={avatarStyle}
       />
 

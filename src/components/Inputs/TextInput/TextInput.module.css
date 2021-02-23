@@ -23,6 +23,7 @@
 }
 
 .errorMessage {
+  padding-left: 10px;
   font-size: 12px;
   color: var(--danger);
 }
@@ -35,12 +36,12 @@
 .password {
   position: absolute;
   right: 10px;
-  bottom: 0;
+  bottom: 6px;
   font-size: 1.6rem;
-  color: grey;
+  /* color: grey; */
   cursor: pointer;
 }
 
 .showPassword {
-  color: black !important;
+  bottom: 4px;
 }

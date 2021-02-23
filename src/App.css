@@ -23,6 +23,10 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+input {
+  border: 1px solid #a1c4ff;
+}
+
 section {
   margin: 0 auto;
   max-width: 970px;

@@ -803,7 +803,7 @@ button,
   -webkit-appearance: none;
   display: inline-block;
   border: 1px solid #0366ee;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   background: #0366ee;
   color: #ffffff;
   font-weight: 600;
@@ -812,7 +812,7 @@ button,
   font-size: 1rem;
   text-transform: none;
   padding: 0.75rem 1.25rem;
-  margin: 0 0 0.5rem 0;
+  /* margin: 0 0 0.5rem 0; */
   vertical-align: middle;
   text-align: center;
   cursor: pointer;
@@ -933,7 +933,7 @@ select,
 textarea {
   display: block;
   border: 1px solid #dedede;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   padding: 0.75rem;
   outline: none;
   margin-bottom: 0.5rem;
@@ -1004,10 +1004,9 @@ textarea {
 }
 
 fieldset {
-  border: 1px solid #dedede;
-  border-radius: 4px;
-  padding: 1rem;
-  margin: 1.5rem 0;
+  border: none;
+  /* padding: 1rem; */
+  margin-top: -4rem;
 }
 
 legend {
@@ -1036,7 +1035,7 @@ label {
   font-weight: 600;
   max-width: 100%;
   display: block;
-  margin: 1rem 0 0.5rem;
+  margin: 1rem 0 0;
 }
 
 @media (min-width: 600px) {
@@ -1115,6 +1114,7 @@ td {
 td {
   text-align: left;
   padding: 25px;
+  line-height: 1;
 }
 
 caption {
