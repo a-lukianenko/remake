@@ -1,8 +1,11 @@
 :root {
   --danger: #eb5757;
+  --light-blue: #e7f0ff;
 }
 
 body {
+  font-size: 14px;
+  font-weight: normal;
   font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
@@ -18,4 +21,10 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+section {
+  margin: 0 auto;
+  max-width: 970px;
+  /* text-align: center; */
 }

@@ -6,6 +6,7 @@ export const AvatarPic = ({
   alt = "avatar",
   width = "100",
   height = "100",
+  style,
 }) => {
   return (
     <img
@@ -14,6 +15,7 @@ export const AvatarPic = ({
       width={width}
       height={height}
       className={avatarPic}
+      style={style}
     />
   );
 };

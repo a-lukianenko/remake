@@ -5,7 +5,7 @@ import { selectAllUsers } from "features/users/usersSlice";
 import { NoUsers } from "./NoUsers";
 import { UserRecord } from "./UserRecord/UserRecord";
 
-import { thead, userList } from "./UserList.module.css";
+import { thead, tbody, userList } from "./UserList.module.css";
 
 export const UsersList = () => {
   const users = useSelector(selectAllUsers) || [];
@@ -21,14 +21,14 @@ export const UsersList = () => {
       <table className='striped-table'>
         <thead className={thead}>
           <tr>
-            <th>name</th>
+            <th style={{ paddingLeft: 80 }}>name</th>
             <th>company</th>
-            <th>contactDetails</th>
+            <th>contacts</th>
             <th>last update</th>
             <th></th>
           </tr>
         </thead>
-        <tbody>{tableContent}</tbody>
+        <tbody className={tbody}>{tableContent}</tbody>
       </table>
       {!tableContent ? <NoUsers /> : null}
     </section>

@@ -27,11 +27,7 @@ import { UnsavedData } from "components/Modals/UnsavedData/UnsavedData";
 
 export const UserForm = ({ valuesToEdit, userKey }) => {
   return (
-    <FormStepper
-      valuesToEdit={valuesToEdit}
-      isEditing={Boolean(valuesToEdit)}
-      userKey={userKey}
-    >
+    <FormStepper valuesToEdit={valuesToEdit} userKey={userKey}>
       <Account isEditing={Boolean(valuesToEdit)} />
       <Profile />
       <Contacts />
@@ -41,6 +37,7 @@ export const UserForm = ({ valuesToEdit, userKey }) => {
 };
 
 const FormStepper = ({ children, ...props }) => {
+  const { valuesToEdit, userKey } = props;
   const dispatch = useDispatch();
   const history = useHistory();
   const formEditStep = history.location.state?.formEditStep;
@@ -48,8 +45,10 @@ const FormStepper = ({ children, ...props }) => {
   const steps = Children.toArray(children);
 
   const getStorageValues = () => {
-    const values = JSON.parse(localStorage.getItem("values"));
-    return { ...values, birthDate: new Date(values.birthDate) };
+    const values = localStorage.getItem("values")
+      ? JSON.parse(localStorage.getItem("values"))
+      : null;
+    return values ? { ...values, birthDate: new Date(values.birthDate) } : null;
   };
 
   const [continueForm, setContinueForm] = useState(() => {
@@ -57,6 +56,9 @@ const FormStepper = ({ children, ...props }) => {
       ...initialValuesEmpty,
       step: 0,
     };
+    const storage = getStorageValues();
+    if (!storage) return false;
+
     const isSymmetric = isEqual(getStorageValues(), initial);
     const showPrompt = Boolean(localStorage.getItem("values")) && isSymmetric;
     return !showPrompt;
@@ -77,11 +79,11 @@ const FormStepper = ({ children, ...props }) => {
   // const emails = ["example@example.com", "gmail@gmail.com"];
 
   const getInitialValues = () => {
-    if (props.valuesToEdit) return props.valuesToEdit;
+    if (valuesToEdit)
+      return { ...valuesToEdit, birthDate: new Date(valuesToEdit.birthDate) };
 
-    return localStorage.getItem("values")
-      ? getStorageValues()
-      : initialValuesEmpty;
+    const storage = localStorage.getItem("values");
+    return storage ? getStorageValues() : initialValuesEmpty;
   };
 
   const getValidationScema = useMemo(() => validationSchema({ step }), [step]);
@@ -90,21 +92,19 @@ const FormStepper = ({ children, ...props }) => {
     enableReinitialize: true,
     validationSchema: getValidationScema,
     onSubmit: async (values, actions) => {
-      if (props.valuesToEdit) {
+      if (valuesToEdit) {
         const payload = {
           user: {
             ...values,
             birthDate: new Date(values.birthDate).getTime(),
             lastUpdate: Date.now(),
           },
-          key: props.userKey,
+          key: userKey,
           history,
         };
-        valuesRef.current = initialValuesEmpty;
-        stepRef.current = 0;
-        localStorage.clear();
+
         dispatch(updateUserAsync(payload));
-      } else if (isLastStep() && !props.valuesToEdit) {
+      } else if (isLastStep() && !valuesToEdit) {
         // const res = await fetch(values.avatar);
         // const blob = res.blob;
         // console.log(blob);
@@ -114,9 +114,9 @@ const FormStepper = ({ children, ...props }) => {
           // avatar: blob,
         };
         dispatch(addUserAsync(payload));
-        localStorage.clear();
         stepRef.current = 0;
         valuesRef.current = initialValuesEmpty;
+        localStorage.clear();
         history.push("/users");
       } else {
         stepForward();
@@ -151,12 +151,12 @@ const FormStepper = ({ children, ...props }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("beforeunload", saveLocal);
+    !valuesToEdit && window.addEventListener("beforeunload", saveLocal);
     return () => {
-      saveLocal();
-      window.removeEventListener("beforeunload", saveLocal);
+      !valuesToEdit && saveLocal();
+      window.removeEventListener("beforeunload", () => {});
     };
-  }, []);
+  }, [valuesToEdit]);
 
   const touched = useRef(0);
 
@@ -179,15 +179,15 @@ const FormStepper = ({ children, ...props }) => {
           headers={formHeaders}
           step={step}
           touched={touched.current}
-          isEditing={Boolean(props.valuesToEdit)}
+          isEditing={Boolean(valuesToEdit)}
           handleStepNavigation={toStep}
         />
-        {continueForm && !props.valuesToEdit && (
+        {continueForm && !valuesToEdit && (
           <UnsavedData resetForm={handleReset} continueForm={handleContinue} />
         )}
         <div className={formStep}>{currentStep}</div>
         <div className={buttons}>
-          {step > 0 && !props.valuesToEdit ? (
+          {step > 0 && !valuesToEdit ? (
             <button onClick={stepBack} type='button' className={btnBack}>
               Back
             </button>
@@ -196,14 +196,14 @@ const FormStepper = ({ children, ...props }) => {
           <button
             type='submit'
             className={
-              isLastStep() && !props.valuesToEdit
+              isLastStep() && !valuesToEdit
                 ? `${btnForward} accent-button`
                 : btnForward
             }
           >
-            {props.valuesToEdit && "Save"}
-            {!props.valuesToEdit && !isLastStep() && "Forward"}
-            {!props.valuesToEdit && isLastStep() && "Finish"}
+            {valuesToEdit && "Save"}
+            {!valuesToEdit && !isLastStep() && "Forward"}
+            {!valuesToEdit && isLastStep() && "Finish"}
           </button>
         </div>
       </Form>

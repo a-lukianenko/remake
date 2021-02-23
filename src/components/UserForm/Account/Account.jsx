@@ -4,7 +4,10 @@ import { TextInput } from "components/Inputs/TextInput/TextInput";
 export const Account = ({ isEditing }) => {
   return (
     <div>
-      <AvatarInput name='avatar' />
+      <AvatarInput
+        name='avatar'
+        avatarStyle={{ border: "2px solid blue", padding: 5 }}
+      />
       <TextInput
         label='User name'
         type='text'

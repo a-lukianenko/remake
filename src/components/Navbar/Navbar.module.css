@@ -12,14 +12,25 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding: 1rem;
+
   max-width: 1000px;
 }
 
 .navbar a {
+  display: block;
+  padding: 20px;
   color: #ffffff;
   opacity: 0.5;
   text-decoration: none;
+}
+
+.navbar a:hover {
+  display: block;
+  padding: 20px;
+  color: #ffffff;
+  opacity: 0.5;
+  text-decoration: none;
+  background-color: grey;
 }
 
 a.active {

@@ -10,8 +10,8 @@ import { ConfirmButton } from "components/ConfirmButton/ConfirmButton";
 
 import {
   name,
-  cell,
-  cellShifted,
+  row,
+  rowShifted,
   whiteBackground,
 } from "./UserRecord.module.css";
 import { deleteUserAsync } from "features/users/usersSlice";
@@ -41,22 +41,24 @@ export const UserRecord = ({ user }) => {
   const deleteRecord = () => dispatch(deleteUserAsync(username));
 
   return (
-    <tr className={isDelete ? cellShifted : cell}>
+    <tr className={isDelete ? rowShifted : row}>
       <td>
-        <AvatarPic src={avatar} width='70' height='70' />
+        <AvatarPic src={avatar} width='40' height='40' />
         <Link to={`users/${username}`} className={name}>
           {firstName} {lastName}
           <br />
-          <small>{username}</small>
+          <span style={{ fontSize: 9 }}>{username}</span>
         </Link>
       </td>
       <td>{company}</td>
       <td>{email}</td>
       <td>
-        {formatDistance(lastUpdate, Date.now(), {
-          includeSeconds: true,
-          addSuffix: true,
-        })}
+        {lastUpdate
+          ? formatDistance(lastUpdate, Date.now(), {
+              includeSeconds: true,
+              addSuffix: true,
+            })
+          : `joined ${new Date().toLocaleDateString()}`}
       </td>
       <td className={isDelete ? whiteBackground : ""}>
         {!isDelete && (

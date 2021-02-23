@@ -1,16 +1,21 @@
 .name {
   display: inline-block;
   margin-left: 15px;
+  line-height: 1;
 }
 
-.cell {
+.row,
+.rowShifted {
+  vertical-align: middle;
+  transition: transform 0.2s;
+}
+
+.row {
   transform: translateX(0px);
-  transition: transform 0.2s;
 }
 
-.cellShifted {
+.rowShifted {
   transform: translateX(-50px);
-  transition: transform 0.2s;
 }
 
 .whiteBackground {

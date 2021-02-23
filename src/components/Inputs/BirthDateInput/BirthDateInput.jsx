@@ -14,7 +14,7 @@ export const BirthDateInput = ({ label, id, ...props }) => {
     setValue(date);
   };
 
-  const [startDate, setStartDate] = useState(value);
+  const [startDate, setStartDate] = useState(new Date(value));
 
   return (
     <div>

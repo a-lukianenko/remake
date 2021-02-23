@@ -3,7 +3,7 @@ import { useField } from "formik";
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
 import { fileInput, label } from "./AvatarInput.module.css";
 
-export const AvatarInput = ({ name }) => {
+export const AvatarInput = ({ name, avatarStyle }) => {
   const [field, meta, helpers] = useField(name);
   const { setValue, setError } = helpers;
 
@@ -35,7 +35,12 @@ export const AvatarInput = ({ name }) => {
 
   return (
     <div>
-      <AvatarPic src={avatarUrl} width='100px' height='100px' />
+      <AvatarPic
+        src={avatarUrl}
+        width='100px'
+        height='100px'
+        style={avatarStyle}
+      />
 
       {meta.error && <div className='error'>{meta.error}</div>}
 
