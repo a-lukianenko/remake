@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { useField } from "formik";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
+import enGb from "date-fns/locale/en-GB";
+import {
+  labelText,
+  required,
+} from "components/Inputs/TextInput/TextInput.module.css";
 import "react-datepicker/dist/react-datepicker.css";
+import "./BirthDateInput.css";
+import { ReactComponent as Calender } from "assets/img/calendar.svg";
+
+registerLocale("en-gb", enGb);
 
 export const BirthDateInput = ({ label, id, ...props }) => {
   const [field, meta, helpers] = useField(props);
@@ -18,14 +27,22 @@ export const BirthDateInput = ({ label, id, ...props }) => {
 
   return (
     <div>
-      <label htmlFor={id}>{label}</label>
-      <DatePicker
-        selected={startDate}
-        dateFormat='dd/MM/yyyy'
-        onChange={date => handleChange(date)}
-        {...props}
-        name={name}
-      />
+      <label htmlFor={id} style={{ maxWidth: 245 }}>
+        {label}
+        {props.required ? <span className={required}>&#42;</span> : null}
+        <DatePicker
+          locale='en-gb'
+          selected={startDate}
+          dateFormat='dd/MM/yyyy'
+          formatWeekDay={day => day.substr(0, 3)}
+          onChange={date => handleChange(date)}
+          placeholderText='DD/MM/YYYY'
+          {...props}
+          name={name}
+        />
+      </label>
+      {/* <label htmlFor={id}>{label}</label> */}
+
       {meta.touched && meta.error ? (
         <div className='error'>{meta.error}</div>
       ) : null}
