@@ -2,12 +2,12 @@ import { TextInput } from "components/Inputs/TextInput/TextInput";
 import { BirthDateInput } from "components/Inputs/BirthDateInput/BirthDateInput";
 import { RadioInputGroup } from "components/Inputs/RadioInput/RadioInputGroup";
 import { AddressInput } from "components/Inputs/AddressInput/AddressInput";
-import { profile } from "./Profile.module.css";
+import { profile, container } from "./Profile.module.css";
 
 export const Profile = () => {
   return (
     <div className={profile}>
-      <div>
+      <div className={container}>
         <TextInput
           label='First name'
           type='text'
@@ -24,7 +24,7 @@ export const Profile = () => {
         />
         <BirthDateInput id='birthDate' label='Birth date' name='birthDate' />
       </div>
-      <div>
+      <div className={container}>
         <TextInput
           label='Email'
           type='email'
