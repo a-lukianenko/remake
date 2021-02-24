@@ -5,7 +5,7 @@ import { selectAllUsers } from "features/users/usersSlice";
 import { NoUsers } from "./NoUsers";
 import { UserRecord } from "./UserRecord/UserRecord";
 
-import { thead, tbody, userList } from "./UserList.module.css";
+import { thead, tbody, h2 } from "./UserList.module.css";
 
 export const UsersList = () => {
   const users = useSelector(selectAllUsers) || [];
@@ -15,9 +15,10 @@ export const UsersList = () => {
       ? users.map(user => <UserRecord user={user} key={user.username} />)
       : null;
 
+  // TODO: extract H2 into a component
   return (
-    <section className={userList}>
-      <h2>List of users</h2>
+    <section>
+      <h2 className={h2}>List of users</h2>
       <table className='striped-table'>
         <thead className={thead}>
           <tr>

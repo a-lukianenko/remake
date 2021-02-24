@@ -62,3 +62,9 @@ td {
   transform: scaleX(-1);
   color: #475666;
 }
+
+.required {
+  position: absolute;
+  right: 0;
+  top: 5px;
+}

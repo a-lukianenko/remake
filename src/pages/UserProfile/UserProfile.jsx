@@ -35,7 +35,7 @@ export const UserProfile = ({ match }) => {
           src={user.avatar}
           width='200'
           height='200'
-          style={{ border: "3px solid #5E97F3" }}
+          style={{ border: "3px solid #5E97F3", padding: "10px" }}
         />
         <ProfileDetails user={user} userId={userId} />
       </div>

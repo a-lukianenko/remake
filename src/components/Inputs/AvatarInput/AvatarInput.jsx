@@ -12,7 +12,6 @@ export const AvatarInput = ({ name, avatarStyle }) => {
 
   const handleFiles = e => {
     const file = e.target.files[0];
-    // const tooBig = 2_000_000;
     if (file.size > 1_000_000)
       return setError(
         `File size (${file.size / 1_000_000}) is bigger than 1 MB.`
@@ -35,17 +34,16 @@ export const AvatarInput = ({ name, avatarStyle }) => {
 
   return (
     <div className={container}>
-      <AvatarPic
-        src={avatarUrl}
-        width='170px'
-        height='170px'
-        style={avatarStyle}
-      />
-
-      {meta.error && <div className='error'>{meta.error}</div>}
-
       <label htmlFor='avatar' className={label}>
-        + add avatar
+        <AvatarPic
+          src={avatarUrl}
+          width='170px'
+          height='170px'
+          style={avatarStyle}
+        />
+        {meta.error && <div className='error'>{meta.error}</div>}
+        <br />
+        <span>+ add avatar</span>
       </label>
 
       <span>{avatarLabelName}</span>

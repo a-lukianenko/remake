@@ -8,7 +8,7 @@ export const Account = ({ isEditing }) => {
       <div>
         <AvatarInput
           name='avatar'
-          avatarStyle={{ border: "2px solid blue", padding: 5 }}
+          avatarStyle={{ border: "3px solid #5E97F3", padding: 5 }}
         />
       </div>
       <div className={fieldGroup}>

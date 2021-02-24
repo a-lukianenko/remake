@@ -69,6 +69,7 @@ export const Contacts = () => {
           label='Main language'
           placeholder={"Select a language"}
           selectOptions={languages}
+          required
         />
       </div>
       <div className={container}>

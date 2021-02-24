@@ -24,7 +24,10 @@ export const SelectInput = ({ label, selectOptions, isMulti, ...props }) => {
 
   return (
     <div>
-      <label htmlFor={props.id}>{label}</label>
+      <label htmlFor={props.id}>
+        {label}
+        {props.required ? <span className='required'>&#42;</span> : null}
+      </label>
       <Select
         closeMenuOnSelect={!isMulti}
         defaultValue={selectedOptions}

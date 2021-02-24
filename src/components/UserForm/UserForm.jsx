@@ -106,13 +106,9 @@ const FormStepper = ({ children, ...props }) => {
 
         dispatch(updateUserAsync(payload));
       } else if (isLastStep() && !valuesToEdit) {
-        // const res = await fetch(values.avatar);
-        // const blob = res.blob;
-        // console.log(blob);
         const payload = {
           ...values,
           birthDate: new Date(values.birthDate).getTime(),
-          // avatar: blob,
         };
         dispatch(addUserAsync(payload));
         stepRef.current = 0;

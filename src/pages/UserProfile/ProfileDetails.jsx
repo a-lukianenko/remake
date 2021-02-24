@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { profileDetails, edit } from "./ProfileDetails.module.css";
+import { profileDetails } from "./ProfileDetails.module.css";
 
 export const ProfileDetails = ({ user, userId }) => {
   const {
