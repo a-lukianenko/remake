@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.input {
+  color: #9bb0cb;
+}
+
 .btn {
   position: absolute;
   right: -20px;

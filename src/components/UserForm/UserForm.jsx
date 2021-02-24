@@ -91,6 +91,7 @@ const FormStepper = ({ children, ...props }) => {
     initialValues: getInitialValues(),
     enableReinitialize: true,
     validationSchema: getValidationScema,
+    validateOnChange: false,
     onSubmit: async (values, actions) => {
       if (valuesToEdit) {
         const payload = {

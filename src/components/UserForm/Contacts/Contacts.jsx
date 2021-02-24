@@ -6,7 +6,7 @@ import { TelInput } from "components/Inputs/TelInput/TelInput";
 import { ReactComponent as Add } from "assets/img/add.svg";
 import { languages } from "utils/formData";
 
-import { container } from "./Contacts.module.css";
+import { container, contacts, btn, span } from "./Contacts.module.css";
 
 export const Contacts = () => {
   const {
@@ -45,7 +45,7 @@ export const Contacts = () => {
   const [phones, setPhones] = useState(initialValue);
 
   return (
-    <div style={style.contacts}>
+    <div className={contacts}>
       <div className={container}>
         <TextInput
           label='Company'
@@ -83,30 +83,11 @@ export const Contacts = () => {
         ))}
 
         {phones.length < 3 && (
-          <button onClick={addPhoneInput} type='button' style={style.btn}>
-            <Add /> <span style={style.span}>add phone number</span>
+          <button onClick={addPhoneInput} type='button' className={btn}>
+            <Add /> <span className={span}>add phone number</span>
           </button>
         )}
       </div>
     </div>
   );
-};
-
-const style = {
-  contacts: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  btn: {
-    display: "block",
-    marginTop: 10,
-    border: "none",
-    outline: "transparent",
-    padding: 0,
-    background: "none",
-    color: "grey",
-  },
-  span: {
-    verticalAlign: 3,
-  },
 };

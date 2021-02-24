@@ -2,3 +2,24 @@
   width: 100%;
   max-width: 300px;
 }
+
+.contacts {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  display: block;
+  margin-top: 10px;
+  border: none;
+  outline: transparent;
+  padding: 0;
+  background: none;
+  color: grey;
+}
+
+.span {
+  vertical-align: 3px;
+  font-weight: normal;
+  color: #657c9a;
+}
