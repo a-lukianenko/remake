@@ -28,6 +28,11 @@ input {
   border: 1px solid #a1c4ff;
 }
 
+button {
+  border: none;
+  outline: transparent;
+}
+
 section {
   margin: 0 auto;
   max-width: 970px;
@@ -42,4 +47,8 @@ section {
   /* 2 */
   width: 25px;
   height: 25px;
+}
+
+a {
+  outline: transparent;
 }

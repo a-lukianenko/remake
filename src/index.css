@@ -486,12 +486,12 @@ a {
   text-decoration: none;
 }
 
-a:hover,
+/* a:hover,
 a:active,
 a:focus {
   color: #0246a2;
   text-decoration: underline;
-}
+} */
 
 mark {
   background: #ffeea8;
@@ -804,7 +804,7 @@ button,
 [type="button"] {
   -webkit-appearance: none;
   display: inline-block;
-  border: 1px solid #0366ee;
+  /* border: 1px solid #0366ee; */
   /* border-radius: 4px; */
   background: #0366ee;
   color: #ffffff;

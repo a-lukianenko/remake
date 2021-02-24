@@ -58,7 +58,7 @@ const customStyles = {
   option: (provided, state) => ({
     ...provided,
     color: "#657C9A",
-    backgroundColor: state.isSelected ? "#E7F0FF" : "transparent",
+    backgroundColor: state.isFocused ? "#E7F0FF" : "transparent",
   }),
   singleValue: (provided, state) => ({
     ...provided,
