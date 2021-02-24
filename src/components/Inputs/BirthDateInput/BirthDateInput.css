@@ -7,8 +7,7 @@
 .react-datepicker__header {
   text-align: center;
   background-color: white;
-  /* border-bottom: 1px solid #aeaeae; */
-  /* border-top-left-radius: 0.3rem; */
+
   border: none;
   padding-top: 8px;
   position: relative;
@@ -64,4 +63,10 @@
 .react-datepicker__triangle,
 .react-datepicker__triangle::before {
   border: none !important;
+}
+
+.calendarIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
 }

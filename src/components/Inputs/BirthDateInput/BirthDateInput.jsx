@@ -31,6 +31,7 @@ export const BirthDateInput = ({ label, id, ...props }) => {
         {label}
         {props.required ? <span className={required}>&#42;</span> : null}
         <DatePicker
+          id={id}
           locale='en-gb'
           selected={startDate}
           dateFormat='dd/MM/yyyy'
@@ -40,8 +41,8 @@ export const BirthDateInput = ({ label, id, ...props }) => {
           {...props}
           name={name}
         />
+        <Calender className='calendarIcon' />
       </label>
-      {/* <label htmlFor={id}>{label}</label> */}
 
       {meta.touched && meta.error ? (
         <div className='error'>{meta.error}</div>
