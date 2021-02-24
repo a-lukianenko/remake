@@ -35,7 +35,7 @@ export const ProfileDetails = ({ user, userId }) => {
                   pathname: `/users/${userId}/edit`,
                   state: { formEditStep: 0 },
                 }}
-                className={edit}
+                className='edit'
               >
                 &#9998;
               </Link>
@@ -58,7 +58,7 @@ export const ProfileDetails = ({ user, userId }) => {
                   pathname: `/users/${userId}/edit`,
                   state: { formEditStep: 1 },
                 }}
-                className={edit}
+                className='edit'
               >
                 {" "}
                 &#9998;
@@ -97,7 +97,7 @@ export const ProfileDetails = ({ user, userId }) => {
                   pathname: `/users/${userId}/edit`,
                   state: { formEditStep: 2 },
                 }}
-                className={edit}
+                className='edit'
               >
                 {" "}
                 &#9998;
@@ -135,7 +135,7 @@ export const ProfileDetails = ({ user, userId }) => {
                   pathname: `/users/${userId}/edit`,
                   state: { formEditStep: 3 },
                 }}
-                className={edit}
+                className='edit'
               >
                 {" "}
                 &#9998;

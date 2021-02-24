@@ -2,12 +2,13 @@
   display: inline-block;
   margin-left: 15px;
   line-height: 1;
+  color: #475666;
 }
 
 .row,
 .rowShifted {
   vertical-align: middle;
-  transition: transform 0.2s;
+  transition: all 0.2s;
 }
 
 .row {
@@ -16,6 +17,10 @@
 
 .rowShifted {
   transform: translateX(-50px);
+}
+
+.rowShifted td:not(:last-child) {
+  opacity: 0.5;
 }
 
 .whiteBackground {

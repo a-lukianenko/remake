@@ -15,9 +15,11 @@
 
 .btnBack {
   display: inline-block;
+  padding: 13px 30px;
   background-color: #c1cfe0;
 }
 
 .btnForward {
   margin-left: 110px;
+  padding: 13px 30px;
 }

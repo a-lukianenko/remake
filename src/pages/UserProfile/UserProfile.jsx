@@ -3,13 +3,7 @@ import { Link } from "react-router-dom";
 import { ProfileDetails } from "./ProfileDetails";
 import { selectAllUsers } from "features/users/usersSlice";
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
-import {
-  textCentered,
-  headers,
-  h2,
-  flex,
-  backToUsers,
-} from "./UserProfile.module.css";
+import { headers, h2, flex, backToUsers } from "./UserProfile.module.css";
 
 export const UserProfile = ({ match }) => {
   const users = useSelector(selectAllUsers);
@@ -26,7 +20,7 @@ export const UserProfile = ({ match }) => {
   if (hasError) return <div>Error...</div>;
 
   return (
-    <section className={textCentered}>
+    <section>
       <div className={headers}>
         <Link to='/users' className={backToUsers}>
           Users List

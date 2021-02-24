@@ -39,6 +39,14 @@ section {
   /* text-align: center; */
 }
 
+a {
+  outline: transparent;
+}
+
+td {
+  border: none;
+}
+
 [type="checkbox"],
 [type="radio"] {
   box-sizing: border-box;
@@ -49,6 +57,8 @@ section {
   height: 25px;
 }
 
-a {
-  outline: transparent;
+.edit {
+  display: inline-block;
+  transform: scaleX(-1);
+  color: #475666;
 }

@@ -2,11 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { UserForm } from "components/UserForm/UserForm";
 
-import {
-  textCentered,
-  backToUsers,
-  h2,
-} from "../UserProfile/UserProfile.module.css";
+import { headers, h2 } from "../UserProfile/UserProfile.module.css";
 import { selectAllUsers } from "features/users/usersSlice";
 
 export const EditProfile = ({ match }) => {
@@ -22,13 +18,13 @@ export const EditProfile = ({ match }) => {
 
   return (
     <section>
-      <div className={backToUsers}>
+      <div className={headers}>
         <Link
           to={`/users/${userId}`}
           className='button'
           title='back to profile'
         >
-          &#8592; User profile
+          User profile
         </Link>
         <h2 className={h2}>Editing</h2>
       </div>

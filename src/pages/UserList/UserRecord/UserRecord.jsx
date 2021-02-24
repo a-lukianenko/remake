@@ -68,6 +68,8 @@ export const UserRecord = ({ user }) => {
               state: { formEditStep: 0 },
             }}
             title='edit'
+            className='edit'
+            style={{ color: "#B1BCC9" }}
           >
             &#9998;
           </Link>
