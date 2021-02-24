@@ -37,10 +37,42 @@ export const SelectInput = ({ label, selectOptions, isMulti, ...props }) => {
         name={name}
         {...props}
         isMulti={isMulti}
+        styles={customStyles}
       />
       {meta.touched && meta.error ? (
         <div className='error'>{meta.error}</div>
       ) : null}
     </div>
   );
+};
+
+const customStyles = {
+  indicatorSeparator: (provided, state) => ({
+    ...provided,
+    backgroundColor: "none",
+  }),
+  indicatorsContainer: (provided, state) => ({
+    ...provided,
+    opacity: 0,
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    color: "#657C9A",
+    backgroundColor: state.isSelected ? "#E7F0FF" : "transparent",
+  }),
+  singleValue: (provided, state) => ({
+    ...provided,
+    color: "black",
+    fontWeight: "bold",
+  }),
+  menuList: (provided, state) => ({
+    ...provided,
+    "&::-webkit-scrollbar": {
+      width: "10px",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#C1CFE0",
+      boxShadow: "inset 0 0 0 3px white",
+    },
+  }),
 };

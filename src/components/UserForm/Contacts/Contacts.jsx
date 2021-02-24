@@ -6,6 +6,8 @@ import { TelInput } from "components/Inputs/TelInput/TelInput";
 import { ReactComponent as Add } from "assets/img/add.svg";
 import { languages } from "utils/formData";
 
+import { container } from "./Contacts.module.css";
+
 export const Contacts = () => {
   const {
     values: { phone1, phone2, phone3 },
@@ -44,7 +46,7 @@ export const Contacts = () => {
 
   return (
     <div style={style.contacts}>
-      <div>
+      <div className={container}>
         <TextInput
           label='Company'
           type='text'
@@ -69,7 +71,7 @@ export const Contacts = () => {
           selectOptions={languages}
         />
       </div>
-      <div>
+      <div className={container}>
         <TelInput id='fax' label='Fax' name='fax' type='tel' />
         {phones.map((phone, i) => (
           <TelInput
