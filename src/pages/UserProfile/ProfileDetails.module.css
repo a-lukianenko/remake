@@ -1,3 +1,40 @@
-tr {
+.profileDetails table {
+  margin-top: 2rem;
+  max-width: 50%;
+  font-weight: 500;
+  color: #475666;
+}
+
+.profileDetails img {
+  padding: 8px;
+}
+
+.profileDetails tr {
   vertical-align: top;
+}
+
+.profileDetails td {
+  border: none;
+  text-align: left;
+  padding: 0 20px 25px;
+  line-height: 20px;
+}
+
+.profileDetails tr td:first-of-type {
+  min-width: 140px;
+}
+
+.profileDetails tr td:nth-of-type(2) {
+  min-width: 120px;
+}
+
+.profileDetails tr td:last-of-type {
+  font-weight: 400;
+  color: #657c9a;
+}
+
+.edit {
+  display: inline-block;
+  transform: scaleX(-1);
+  color: #475666;
 }

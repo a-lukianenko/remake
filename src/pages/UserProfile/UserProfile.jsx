@@ -39,8 +39,8 @@ export const UserProfile = ({ match }) => {
       <div className={flex}>
         <AvatarPic
           src={user.avatar}
-          width='150'
-          height='150'
+          width='200'
+          height='200'
           style={{ border: "3px solid #5E97F3" }}
         />
         <ProfileDetails user={user} userId={userId} />
