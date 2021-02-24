@@ -2,7 +2,7 @@ import { TextInput } from "components/Inputs/TextInput/TextInput";
 import { BirthDateInput } from "components/Inputs/BirthDateInput/BirthDateInput";
 import { RadioInputGroup } from "components/Inputs/RadioInput/RadioInputGroup";
 import { AddressInput } from "components/Inputs/AddressInput/AddressInput";
-import { profile, container } from "./Profile.module.css";
+import { profile, container, labels, label } from "./Profile.module.css";
 
 export const Profile = () => {
   return (
@@ -55,6 +55,8 @@ export const Profile = () => {
             { value: "male", label: "male" },
             { value: "female", label: "female" },
           ]}
+          labelStyle={label}
+          labelsStyle={labels}
         />
       </div>
     </div>

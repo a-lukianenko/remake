@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+  max-width: 300px;
+}
+
+.labelWrapper {
+  display: flex;
+}
+
+.label {
+  padding-left: 1rem;
+  margin-top: -3px;
+}
+
+.inputStyle {
+  width: 15px;
+  height: 15px;
+}
