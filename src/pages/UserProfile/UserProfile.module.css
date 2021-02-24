@@ -1,19 +1,42 @@
-.textCentered {
+/* .textCentered {
   padding: 0 2rem;
   text-align: center;
-}
+} */
 
-.backToUsers {
+.headers {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  padding: 2.5rem 0 1.5rem;
 }
 
 .h2 {
-  margin: 2rem auto;
+  margin: 0 auto !important;
+  font-size: 35px;
+  color: #475666;
 }
 
 .flex {
   display: flex;
   justify-content: space-around;
   background-color: var(--light-blue);
+}
+
+.backToUsers {
+  position: relative;
+  font-size: 24px;
+  color: #9bb0cb;
+  padding: 0;
+  padding-left: 30px;
+}
+
+.backToUsers::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 13px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #9bb0cb;
+  border-left: 2px solid #9bb0cb;
+  transform: rotate(315deg);
 }
