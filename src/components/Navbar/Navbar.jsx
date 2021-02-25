@@ -1,5 +1,12 @@
 import { NavLink, Link } from "react-router-dom";
-import { wrapper, navbar, menu, active, navLink } from "./Navbar.module.css";
+import {
+  wrapper,
+  navbar,
+  menu,
+  active,
+  navLink,
+  logo,
+} from "./Navbar.module.css";
 import Logo from "assets/img/Logo.png";
 import { ReactComponent as AddUser } from "assets/img/addUser.svg";
 import { ReactComponent as UserList } from "assets/img/userList.svg";
@@ -8,7 +15,7 @@ export const Navbar = () => {
   return (
     <div className={wrapper}>
       <nav className={navbar}>
-        <Link to='/add-user'>
+        <Link to='/add-user' className={logo}>
           <img src={Logo} alt='logo' />
         </Link>
         <ul className={menu}>

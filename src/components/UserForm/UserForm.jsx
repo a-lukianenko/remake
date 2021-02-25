@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, Children, useMemo } from "react";
+import { useSelector } from "react-redux";
 import { Form, useFormik, FormikProvider } from "formik";
 import { useHistory } from "react-router-dom";
 import isEqual from "lodash.isequal";
@@ -21,7 +22,11 @@ import {
   btnBack,
   btnForward,
 } from "./UserForm.module.css";
-import { addUserAsync, updateUserAsync } from "features/users/usersSlice";
+import {
+  addUserAsync,
+  selectAllUsers,
+  updateUserAsync,
+} from "features/users/usersSlice";
 import { useDispatch } from "react-redux";
 import { UnsavedData } from "components/Modals/UnsavedData/UnsavedData";
 
@@ -38,6 +43,9 @@ export const UserForm = ({ valuesToEdit, userKey }) => {
 
 const FormStepper = ({ children, ...props }) => {
   const { valuesToEdit, userKey } = props;
+  const users = useSelector(selectAllUsers);
+  const usernames = useMemo(() => users.map(u => u.username), [users]);
+  const emails = useMemo(() => users.map(u => u.email), [users]);
   const dispatch = useDispatch();
   const history = useHistory();
   const formEditStep = history.location.state?.formEditStep;
@@ -74,10 +82,6 @@ const FormStepper = ({ children, ...props }) => {
 
   const currentStep = steps[step];
 
-  // TODO:  check notOneOf:
-  // const usernames = ["one", "two"];
-  // const emails = ["example@example.com", "gmail@gmail.com"];
-
   const getInitialValues = () => {
     if (valuesToEdit)
       return { ...valuesToEdit, birthDate: new Date(valuesToEdit.birthDate) };
@@ -86,7 +90,10 @@ const FormStepper = ({ children, ...props }) => {
     return storage ? getStorageValues() : initialValuesEmpty;
   };
 
-  const getValidationScema = useMemo(() => validationSchema({ step }), [step]);
+  const getValidationScema = useMemo(
+    () => validationSchema({ usernames, emails, step }),
+    [usernames, emails, step]
+  );
   const formProps = {
     initialValues: getInitialValues(),
     enableReinitialize: true,

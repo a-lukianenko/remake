@@ -43,6 +43,10 @@ a.active {
   opacity: 1;
 }
 
+.logo {
+  line-height: 1;
+}
+
 .menu {
   display: flex;
   justify-content: space-between;
