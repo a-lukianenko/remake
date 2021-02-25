@@ -1,8 +1,12 @@
 .name {
-  display: inline-block;
-  margin-left: 15px;
+  display: flex;
+  align-items: flex-end;
   line-height: 1;
   color: #475666;
+}
+
+.name div {
+  margin-left: 10px;
 }
 
 .row,

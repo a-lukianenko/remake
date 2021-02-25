@@ -2,10 +2,7 @@ import { useState } from "react";
 import { useField } from "formik";
 import DatePicker, { registerLocale } from "react-datepicker";
 import enGb from "date-fns/locale/en-GB";
-import {
-  labelText,
-  required,
-} from "components/Inputs/TextInput/TextInput.module.css";
+import { required } from "components/Inputs/TextInput/TextInput.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./BirthDateInput.css";
 import { ReactComponent as Calender } from "assets/img/calendar.svg";

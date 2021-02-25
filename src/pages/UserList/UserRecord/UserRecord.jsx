@@ -43,11 +43,15 @@ export const UserRecord = ({ user }) => {
   return (
     <tr className={isDelete ? rowShifted : row}>
       <td>
-        <AvatarPic src={avatar} width='40' height='40' />
         <Link to={`users/${username}`} className={name}>
-          {firstName} {lastName}
-          <br />
-          <span style={{ fontSize: 9 }}>{username}</span>
+          <AvatarPic src={avatar} width='40' height='40' />
+          <div>
+            <span>
+              {firstName} {lastName}
+            </span>
+            <br />
+            <span style={{ fontSize: 9 }}>{username}</span>
+          </div>
         </Link>
       </td>
       <td>{company}</td>

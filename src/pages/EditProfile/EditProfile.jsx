@@ -8,17 +8,13 @@ import {
   backToUsers,
 } from "../UserProfile/UserProfile.module.css";
 import { selectAllUsers } from "features/users/usersSlice";
+import { Loader } from "components/Loader/Loader";
 
 export const EditProfile = ({ match }) => {
   const users = useSelector(selectAllUsers);
   const isLoading = useSelector(state => state.users.isLoading);
-  const hasError = useSelector(state => state.users.hasError);
   const { userId } = match.params;
   const user = users.find(user => user.username === userId);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (hasError) return <div>Error...</div>;
-  if (!user) return <h3>No user under ID: {userId}</h3>;
 
   return (
     <section>
@@ -32,7 +28,16 @@ export const EditProfile = ({ match }) => {
         </Link>
         <h2 className={h2}>Editing</h2>
       </div>
-      <UserForm valuesToEdit={user} userKey={user.username} />
+
+      {isLoading && !user && <Loader />}
+
+      {!isLoading && !user && (
+        <h3 style={{ textAlign: "center" }}>No user under ID: {userId}</h3>
+      )}
+
+      {!isLoading && user && (
+        <UserForm valuesToEdit={user} userKey={user.username} />
+      )}
     </section>
   );
 };

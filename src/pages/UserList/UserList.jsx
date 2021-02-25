@@ -6,14 +6,24 @@ import { NoUsers } from "./NoUser/NoUsers";
 import { UserRecord } from "./UserRecord/UserRecord";
 
 import { thead, tbody, h2 } from "./UserList.module.css";
+import { Loader } from "components/Loader/Loader";
 
 export const UsersList = () => {
   const users = useSelector(selectAllUsers) || [];
+  const isLoading = useSelector(state => state.users.isLoading);
 
   const tableContent =
     users.length > 0
       ? users.map(user => <UserRecord user={user} key={user.username} />)
       : null;
+
+  if (isLoading)
+    return (
+      <section>
+        <h2 className={h2}>List of users</h2>
+        <Loader />
+      </section>
+    );
 
   // TODO: extract H2 into a component
   return (

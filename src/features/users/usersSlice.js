@@ -44,7 +44,7 @@ const options = {
   name: "users",
   initialState: {
     users: [],
-    isLoading: false,
+    isLoading: true,
     hasError: false,
   },
   reducers: {},
