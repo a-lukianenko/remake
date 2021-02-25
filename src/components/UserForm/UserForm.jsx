@@ -54,7 +54,7 @@ const FormStepper = ({ children, ...props }) => {
 
   const getStorageValues = () => {
     const values = JSON.parse(localStorage.getItem("values"));
-    return { ...values, birthDate: new Date(values.birthDate) };
+    return values ? { ...values, birthDate: new Date(values.birthDate) } : null;
   };
 
   const [continueForm, setContinueForm] = useState(() => {
