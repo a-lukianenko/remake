@@ -9,7 +9,7 @@ import {
   formHeaders,
   validationSchema,
   initialValuesFilled, // for testing
-  initialValuesEmpty,
+  initialValues,
 } from "utils/formData";
 import { Profile } from "./Profile/Profile";
 import { Contacts } from "./Contacts/Contacts";
@@ -53,15 +53,13 @@ const FormStepper = ({ children, ...props }) => {
   const steps = Children.toArray(children);
 
   const getStorageValues = () => {
-    const values = localStorage.getItem("values")
-      ? JSON.parse(localStorage.getItem("values"))
-      : null;
-    return values ? { ...values, birthDate: new Date(values.birthDate) } : null;
+    const values = JSON.parse(localStorage.getItem("values"));
+    return { ...values, birthDate: new Date(values.birthDate) };
   };
 
   const [continueForm, setContinueForm] = useState(() => {
     const initial = {
-      ...initialValuesEmpty,
+      ...initialValues,
       step: 0,
     };
     const storage = getStorageValues();
@@ -73,11 +71,11 @@ const FormStepper = ({ children, ...props }) => {
   });
 
   const [step, setStep] = useState(() => {
-    return (
-      formEditStep ||
-      (localStorage.getItem("values") && getStorageValues()?.step) ||
-      0
-    );
+    if (formEditStep || formEditStep === 0) return formEditStep;
+    if (localStorage.getItem("values") && getStorageValues()?.step)
+      return getStorageValues().step;
+
+    return 0;
   });
 
   const currentStep = steps[step];
@@ -86,16 +84,22 @@ const FormStepper = ({ children, ...props }) => {
     if (valuesToEdit)
       return { ...valuesToEdit, birthDate: new Date(valuesToEdit.birthDate) };
 
-    const storage = localStorage.getItem("values");
-    return storage ? getStorageValues() : initialValuesEmpty;
+    const inStorage = localStorage.getItem("values");
+    return inStorage ? getStorageValues() : initialValues;
   };
 
   const getValidationScema = useMemo(
-    () => validationSchema({ usernames, emails, step }),
-    [usernames, emails, step]
+    () =>
+      validationSchema({
+        usernames: valuesToEdit ? [] : usernames,
+        emails: valuesToEdit ? [] : emails,
+        step,
+      }),
+    [usernames, emails, step, valuesToEdit]
   );
   const formProps = {
-    initialValues: getInitialValues(),
+    initialValues:
+      continueForm && !valuesToEdit ? initialValues : getInitialValues(),
     enableReinitialize: true,
     validationSchema: getValidationScema,
     validateOnChange: false,
@@ -119,7 +123,7 @@ const FormStepper = ({ children, ...props }) => {
         };
         dispatch(addUserAsync(payload));
         stepRef.current = 0;
-        valuesRef.current = initialValuesEmpty;
+        valuesRef.current = initialValues;
         localStorage.clear();
         history.push("/users");
       } else {
@@ -136,7 +140,10 @@ const FormStepper = ({ children, ...props }) => {
     setStep(0);
   };
   const handleContinue = () => {
+    const newStep = getStorageValues().step;
     setContinueForm(false);
+    setStep(newStep);
+    touched.current = newStep;
   };
 
   const valuesRef = useRef(formik.values);

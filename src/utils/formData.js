@@ -96,7 +96,7 @@ export const initialValuesFilled = {
   hobbies: [],
 };
 
-export const initialValuesEmpty = {
+export const initialValues = {
   avatar: "",
   username: "",
   password: "",
