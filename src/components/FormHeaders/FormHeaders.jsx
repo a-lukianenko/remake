@@ -1,4 +1,7 @@
+import classNames from "classnames/bind";
 import css from "./FormHeaders.module.css";
+
+const cx = classNames.bind(css);
 
 export const FormHeaders = ({
   headers,
@@ -10,21 +13,11 @@ export const FormHeaders = ({
   return (
     <div className={css.formHeaders}>
       {headers.map((header, i) => {
-        let className;
-
-        switch (true) {
-          case isEditing && i !== step:
-            className = `${css.h3} ${css.passed}`;
-            break;
-          case i < touched && i !== step:
-            className = `${css.h3} ${css.passed}`;
-            break;
-          case i === step:
-            className = `${css.h3} ${css.current}`;
-            break;
-          default:
-            className = css.h3;
-        }
+        let className = cx({
+          h3: true,
+          passed: (isEditing && i !== step) || (i < touched && i !== step),
+          current: i === step,
+        });
 
         return (
           <h3

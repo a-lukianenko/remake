@@ -9,10 +9,14 @@
   margin-left: 10px;
 }
 
+.username {
+  font-size: 9px;
+}
+
 .row,
 .rowShifted {
   vertical-align: middle;
-  transition: all 0.2s;
+  transition: transform 0.2s;
 }
 
 .row {
