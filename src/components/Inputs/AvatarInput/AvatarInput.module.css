@@ -1,5 +1,6 @@
 .container {
   text-align: center;
+  outline: transparent;
 }
 
 .fileInput {
@@ -16,4 +17,11 @@
   margin-right: 10px;
   margin-top: -10px;
   cursor: pointer;
+}
+
+.avatarError {
+  line-height: 1.2;
+  font-size: 0.8rem;
+  color: #eb5757;
+  max-width: 200px;
 }

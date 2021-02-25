@@ -10,7 +10,7 @@ import { ConfirmButton } from "components/ConfirmButton/ConfirmButton";
 
 import {
   name,
-  username,
+  userName,
   row,
   rowShifted,
   whiteBackground,
@@ -51,7 +51,7 @@ export const UserRecord = ({ user }) => {
               {firstName} {lastName}
             </span>
             <br />
-            <span className={username}>{username}</span>
+            <span className={userName}>{username}</span>
           </div>
         </Link>
       </td>
