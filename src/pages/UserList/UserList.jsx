@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import { selectAllUsers } from "features/users/usersSlice";
 
-import { NoUsers } from "./NoUsers";
+import { NoUsers } from "./NoUser/NoUsers";
 import { UserRecord } from "./UserRecord/UserRecord";
 
 import { thead, tbody, h2 } from "./UserList.module.css";

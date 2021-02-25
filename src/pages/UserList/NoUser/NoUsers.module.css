@@ -1,0 +1,22 @@
+.container {
+  margin-top: -57px;
+  padding-top: 130px;
+  padding-bottom: 140px;
+  text-align: center;
+  background: #fafcff;
+}
+
+.h3 {
+  font-size: 35px;
+  color: #9bb0cb;
+}
+
+.link {
+  display: block;
+  margin: 0 auto;
+  margin-top: 65px;
+  padding: 12px 30px;
+  width: fit-content;
+  background: #5e97f3;
+  color: white;
+}
