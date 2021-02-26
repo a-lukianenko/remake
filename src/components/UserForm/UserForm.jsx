@@ -65,7 +65,6 @@ const FormStepper = ({ children, ...props }) => {
         ...storageValues,
         birthDate: new Date(storageValues.birthDate),
       };
-      debugger;
       return values;
     } catch (e) {
       return initialValues;
@@ -193,7 +192,7 @@ const FormStepper = ({ children, ...props }) => {
 
   return (
     <FormikProvider value={formik}>
-      <Form className={form} autoComplete='off' noValidate>
+      <Form className={form} autoComplete='on' noValidate>
         <FormHeaders
           headers={formHeaders}
           step={step}

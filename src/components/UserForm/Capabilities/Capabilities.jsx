@@ -7,7 +7,6 @@ import {
   label,
   labelWrapper,
   inputStyle,
-  textArea,
 } from "./Capabilities.module.css";
 
 export const Capabilities = () => {
@@ -23,7 +22,6 @@ export const Capabilities = () => {
           isMulti
         />
         <TextAreaInput
-          className={textArea}
           id='additionalInfo'
           name='additionalInfo'
           label='Additional Information'

@@ -50,11 +50,11 @@ export const SelectInput = ({ label, selectOptions, isMulti, ...props }) => {
 };
 
 const customStyles = {
-  indicatorSeparator: (provided, state) => ({
+  indicatorSeparator: provided => ({
     ...provided,
     backgroundColor: "none",
   }),
-  indicatorsContainer: (provided, state) => ({
+  indicatorsContainer: provided => ({
     ...provided,
     opacity: 0,
   }),
@@ -63,12 +63,11 @@ const customStyles = {
     color: "#657C9A",
     backgroundColor: state.isFocused ? "#E7F0FF" : "transparent",
   }),
-  singleValue: (provided, state) => ({
+  singleValue: provided => ({
     ...provided,
     color: "black",
-    fontWeight: "bold",
   }),
-  menuList: (provided, state) => ({
+  menuList: provided => ({
     ...provided,
     "&::-webkit-scrollbar": {
       width: "10px",

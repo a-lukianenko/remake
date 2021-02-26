@@ -41,7 +41,7 @@ export const UsersList = () => {
         </thead>
         <tbody className={tbody}>{tableContent}</tbody>
       </table>
-      {!tableContent && <NoUsers />}
+      {!tableContent.length && <NoUsers />}
     </section>
   );
 };

@@ -68,3 +68,12 @@ td {
   right: 0;
   top: 5px;
 }
+
+
+.error {
+  line-height: 1;
+  font-size: 0.8rem;
+  color: #eb5757;
+  padding-left: 10px;
+  padding-top: 4px;
+}
