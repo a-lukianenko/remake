@@ -80,7 +80,9 @@ export const ProfileDetails = ({ user, userId }) => {
           <tr>
             <td></td>
             <td>Email</td>
-            <td>{email}</td>
+            <td>
+              <a href={`mailto: ${email}`}>{email}</a>
+            </td>
           </tr>
           <tr>
             <td></td>
@@ -123,7 +125,9 @@ export const ProfileDetails = ({ user, userId }) => {
               <tr key={i.toString()}>
                 <td></td>
                 <td>Phone {i + 1}</td>
-                <td>{phone}</td>
+                <td>
+                  <a href={`tel: ${phone}`}>{phone}</a>
+                </td>
               </tr>
             ) : null;
           })}

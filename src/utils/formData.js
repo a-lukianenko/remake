@@ -2,7 +2,7 @@ import { object, string, date, array, ref } from "yup";
 import { subYears } from "date-fns";
 
 const phonePattern = /\+7\s\(\d{3}\)\s(\d{3}-\d{2}-\d{2})/;
-
+const validLinkPattern = /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/;
 export const formHeaders = [
   "1. Account",
   "2. Profile",
@@ -124,21 +124,24 @@ export const validationSchema = ({ usernames = [], emails = [], step = 0 }) => {
   const account = object({
     avatar: string(),
     username: string()
+      .trim()
       .notOneOf(usernames, "username already taken")
       .required("required"),
     password: string()
+      .trim()
       .min(8, "Must be minimum 8 characters")
       .matches(/(?=.*[A-Z])/, "Password must include at least 1 capital letter")
       .matches(/(?=.*\d)/, "Password must include at least 1 digit")
       .required("required"),
     passwordRepeat: string()
+      .trim()
       .oneOf([ref("password"), null], "Passwords don't match")
       .required("required"),
   });
 
   const profile = object({
-    firstName: string().required("required"),
-    lastName: string().required("required"),
+    firstName: string().trim().required("required"),
+    lastName: string().trim().required("required"),
     birthDate: date().max(
       subYears(new Date(), 18),
       "you must be at least 18 years old"
@@ -152,9 +155,15 @@ export const validationSchema = ({ usernames = [], emails = [], step = 0 }) => {
   });
 
   const contacts = object({
-    company: string().required("required"),
-    github: string(),
-    facebook: string(),
+    company: string()
+      .trim()
+      .test({
+        test: value => !validLinkPattern.test(value),
+        message: "invalid company name",
+      })
+      .required("required"),
+    github: string().url(),
+    facebook: string().url(),
     languages: array(string())
       .min(1, "choose your main language")
       .required("required"),
@@ -178,7 +187,7 @@ export const validationSchema = ({ usernames = [], emails = [], step = 0 }) => {
 
   const capabilities = object({
     skills: array(string()).min(3, "Minimum 3 skills").required("required"),
-    additionalInfo: string().max(300, "Maximum 300 characters"),
+    additionalInfo: string().trim().max(300, "Maximum 300 characters"),
     hobbies: array(string()),
   });
 

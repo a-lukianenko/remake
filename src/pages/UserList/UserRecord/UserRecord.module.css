@@ -23,6 +23,18 @@
   transform: translateX(0px);
 }
 
+.row td span {
+  display: inline-block;
+  overflow-wrap: break-word;
+  max-width: 130px;
+}
+
+.row td:nth-of-type(2),
+.row td:nth-of-type(3) {
+  overflow-wrap: break-word;
+  max-width: 200px;
+}
+
 .rowShifted {
   transform: translateX(-50px);
 }
