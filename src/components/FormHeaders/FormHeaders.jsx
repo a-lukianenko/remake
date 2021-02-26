@@ -13,8 +13,7 @@ export const FormHeaders = ({
   return (
     <div className={css.formHeaders}>
       {headers.map((header, i) => {
-        let className = cx({
-          h3: true,
+        const className = cx("h3", {
           passed: (isEditing && i !== step) || (i < touched && i !== step),
           current: i === step,
         });

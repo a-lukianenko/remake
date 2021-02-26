@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ProfileDetails } from "./ProfileDetails";
-import { selectAllUsers } from "features/users/usersSlice";
+import { selectAllUsers, selectIsLoading } from "features/users/usersSlice";
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
 import { headers, h2, flex, backToUsers } from "./UserProfile.module.css";
 import { Loader } from "components/Loader/Loader";
 
 export const UserProfile = ({ match }) => {
   const users = useSelector(selectAllUsers);
-  const isLoading = useSelector(state => state.users.isLoading);
+  const isLoading = useSelector(selectIsLoading);
   const { userId } = match.params;
   const user = users.find(user => user.username === userId);
 

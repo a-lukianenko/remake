@@ -9,17 +9,20 @@ import {
   avatarError,
 } from "./AvatarInput.module.css";
 
-export const AvatarInput = ({ name, avatarStyle }) => {
+export const AvatarInput = ({ name, hasBorder }) => {
   const [field, meta, helpers] = useField(name);
   const { value } = field;
   const { setValue, setError } = helpers;
 
-  const [avatarLabelName, setAvatarLabelName] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState(value);
-  const [avatarBg, setAvatarBg] = useState(avatarStyle);
+  const avatarInitialData = { labelName: "", url: value };
+
+  const [avatarData, setAvatarData] = useState(avatarInitialData);
+  const [avatarBg, setAvatarBg] = useState(() =>
+    hasBorder ? { border: "3px solid #5E97F3", padding: 5 } : null
+  );
 
   useEffect(() => {
-    setAvatarUrl(value);
+    setAvatarData(prev => ({ ...prev, url: value }));
   }, [value]);
 
   const onDrop = useCallback(
@@ -30,18 +33,19 @@ export const AvatarInput = ({ name, avatarStyle }) => {
             `File size (${file.size / 1_000_000}) is bigger than 1 MB.`
           );
 
-        setAvatarLabelName(file.name);
-
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
         reader.onload = function () {
           const dataUrl = reader.result;
-          setAvatarUrl(dataUrl);
+          setAvatarData({ labelName: file.name, url: dataUrl });
           setValue(dataUrl);
         };
         reader.onerror = function () {
-          setAvatarLabelName("error occurred. Please, try again later");
+          setAvatarData(prev => ({
+            ...prev,
+            labelName: "error occurred. Please, try again later",
+          }));
         };
       });
     },
@@ -58,14 +62,15 @@ export const AvatarInput = ({ name, avatarStyle }) => {
         ...prev,
         opacity: 0.3,
       })),
-    onDragLeave: () => setAvatarBg({ ...avatarStyle, opacity: 1 }),
-    onDropAccepted: () => setAvatarBg({ ...avatarStyle, opacity: 1 }),
+    onDragLeave: () => setAvatarBg(prev => ({ ...prev, opacity: 1 })),
+    onDropAccepted: () => setAvatarBg(prev => ({ ...prev, opacity: 1 })),
     onDropRejected: fileRejections => {
       const { errors, file } = fileRejections[0];
       setError(`${file.name}: \n ${errors[0].message}`);
-      setAvatarUrl(null);
-      setAvatarLabelName("");
-      setAvatarBg({ ...avatarStyle, opacity: 1 });
+
+      setAvatarData(avatarInitialData);
+
+      setAvatarBg(prev => ({ ...prev, opacity: 1 }));
       setTimeout(setError, 2000, null);
     },
   });
@@ -78,14 +83,14 @@ export const AvatarInput = ({ name, avatarStyle }) => {
     >
       <label htmlFor='avatar' className={label}>
         <AvatarPic
-          src={avatarUrl}
+          src={avatarData.url}
           width='170px'
           height='170px'
           style={avatarBg}
         />
         {meta.error && <div className={avatarError}>{meta.error}</div>}
         <br />
-        <span>{avatarLabelName}</span>
+        <span>{avatarData.labelName}</span>
 
         <input
           className={fileInput}

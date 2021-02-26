@@ -99,5 +99,6 @@ const usersSlice = createSlice(options);
 
 // selectors
 export const selectAllUsers = state => state.users.users;
+export const selectIsLoading = state => state.users.isLoading;
 
 export default usersSlice.reducer;

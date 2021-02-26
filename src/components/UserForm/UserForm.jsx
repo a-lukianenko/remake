@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Form, useFormik, FormikProvider } from "formik";
 import { useHistory } from "react-router-dom";
 import isEqual from "lodash.isequal";
+import classNames from "classnames/bind";
 
 import { Account } from "./Account/Account";
 import {
@@ -185,7 +186,7 @@ const FormStepper = ({ children, ...props }) => {
 
   return (
     <FormikProvider value={formik}>
-      <Form className={form} autoComplete='on' noValidate>
+      <Form className={form} autoComplete='off' noValidate>
         <FormHeaders
           headers={formHeaders}
           step={step}
@@ -206,11 +207,9 @@ const FormStepper = ({ children, ...props }) => {
 
           <button
             type='submit'
-            className={
-              isLastStep() && !valuesToEdit
-                ? `${btnForward} accent-button`
-                : btnForward
-            }
+            className={classNames(btnForward, {
+              "accent-button": isLastStep() && !valuesToEdit,
+            })}
           >
             {valuesToEdit && "Save"}
             {!valuesToEdit && !isLastStep() && "Forward"}

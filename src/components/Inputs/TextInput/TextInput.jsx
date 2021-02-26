@@ -33,7 +33,7 @@ export const TextInput = ({ label, type, ...props }) => {
           type={inputType}
           className={`${input} ${meta.touched && meta.error ? invalid : ""}`}
         />
-        {props.id.includes("password") && (
+        {type === "password" && (
           <span
             onClick={togglePasswordDisplay}
             className={

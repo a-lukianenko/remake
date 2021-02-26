@@ -15,12 +15,12 @@ export const ProfileDetails = ({ user, userId }) => {
     facebook,
     skills,
     hobbies,
+    phone1,
+    phone2,
+    phone3,
   } = user;
 
-  const phones = [];
-  for (let i = 1; i <= 3; i++) {
-    user[`phone${i}`] ?? phones.push(user[`phone${i}`]);
-  }
+  const phones = [phone1, phone2, phone3];
 
   return (
     <div className={profileDetails}>
@@ -118,13 +118,15 @@ export const ProfileDetails = ({ user, userId }) => {
               <a href={facebook}>{facebook}</a>
             </td>
           </tr>
-          {phones.map((phone, i) => (
-            <tr key={i.toString()}>
-              <td></td>
-              <td>Phone {i + 1}</td>
-              <td>{phone}</td>
-            </tr>
-          ))}
+          {phones.map((phone, i) => {
+            return phone ? (
+              <tr key={i.toString()}>
+                <td></td>
+                <td>Phone {i + 1}</td>
+                <td>{phone}</td>
+              </tr>
+            ) : null;
+          })}
 
           {/* Capabilities */}
           <tr>

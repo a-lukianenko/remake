@@ -2,14 +2,11 @@ import { AvatarInput } from "components/Inputs/AvatarInput/AvatarInput";
 import { TextInput } from "components/Inputs/TextInput/TextInput";
 import { container, fieldGroup } from "./Account.module.css";
 
-export const Account = ({ isEditing }) => {
+export const Account = () => {
   return (
     <div className={container}>
       <div>
-        <AvatarInput
-          name='avatar'
-          avatarStyle={{ border: "3px solid #5E97F3", padding: 5 }}
-        />
+        <AvatarInput name='avatar' hasBorder />
       </div>
       <div className={fieldGroup}>
         <TextInput
@@ -22,7 +19,7 @@ export const Account = ({ isEditing }) => {
 
         <TextInput
           label='Password'
-          type={isEditing ? "text" : "password"}
+          type='password'
           id='password'
           name='password'
           className='password-field'
@@ -31,7 +28,7 @@ export const Account = ({ isEditing }) => {
 
         <TextInput
           label='Repeat password'
-          type={isEditing ? "text" : "password"}
+          type='password'
           id='passwordRepeat'
           name='passwordRepeat'
           className='password-field'
