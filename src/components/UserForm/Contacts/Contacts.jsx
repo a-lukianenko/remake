@@ -19,25 +19,26 @@ export const Contacts = () => {
   }));
 
   const addPhoneInput = () => {
-    if (phones.length < 3) {
-      setPhones(_ => {
-        const filled = data.filter((phone, i) => phone[`phone${i + 1}`]);
-        const unfilled = data.filter((phone, i) => !phone[`phone${i + 1}`]);
-        const [nextToAdd] = unfilled.sort(
-          (prev, next) =>
-            +Object.keys(prev)[0].split("e")[1] -
-            +Object.keys(next)[0].split("e")[1]
-        );
-        return [...filled, nextToAdd];
-      });
-    }
+    setPhones(prev => {
+      const present = prev.reduce(
+        (acc, phone) => [...acc, ...Object.keys(phone)],
+        []
+      );
+      const unfilled = data.filter(
+        (phone, i) => !present.includes(Object.keys(phone)[0])
+      );
+      const [nextToAdd] = unfilled.sort(
+        (prev, next) =>
+          +Object.keys(prev)[0].split("e")[1] -
+          +Object.keys(next)[0].split("e")[1]
+      );
+      return [...prev, nextToAdd];
+    });
   };
 
   const removePhone = name => {
-    if (phones.length > 1) {
-      setFieldValue([name], "");
-      setPhones(phones.filter(phone => Object.keys(phone)[0] !== name));
-    }
+    setFieldValue([name], "");
+    setPhones(phones.filter(phone => Object.keys(phone)[0] !== name));
   };
 
   const dataFiltered = data.filter(phone => Object.values(phone)[0]);
@@ -80,6 +81,7 @@ export const Contacts = () => {
             label={`Phone #${i + 1}`}
             name={Object.keys(phone)[0]}
             removePhone={removePhone}
+            isRemovable={phones.length > 1}
           />
         ))}
 

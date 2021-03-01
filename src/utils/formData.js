@@ -159,7 +159,7 @@ export const validationSchema = ({ usernames = [], emails = [], step = 0 }) => {
       .trim()
       .test({
         test: value => !validLinkPattern.test(value),
-        message: "invalid company name",
+        message: "Company name should not be a link",
       })
       .required("required"),
     github: string().url(),
