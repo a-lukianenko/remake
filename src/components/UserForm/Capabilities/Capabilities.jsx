@@ -20,6 +20,7 @@ export const Capabilities = () => {
           selectOptions={skills}
           placeholder={"Select 3 skills"}
           isMulti
+          indicatorsContainer
         />
         <TextAreaInput
           id='additionalInfo'

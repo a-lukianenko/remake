@@ -2,7 +2,13 @@ import { useState } from "react";
 import { useField } from "formik";
 import Select from "react-select";
 
-export const SelectInput = ({ label, selectOptions, isMulti, ...props }) => {
+export const SelectInput = ({
+  label,
+  selectOptions,
+  isMulti,
+  indicatorsContainer,
+  ...props
+}) => {
   const [field, meta, helpers] = useField(props);
   let { value } = field;
 
@@ -20,6 +26,40 @@ export const SelectInput = ({ label, selectOptions, isMulti, ...props }) => {
       : options.map(opt => opt.value);
     setValue(arr);
     setTouched(true);
+  };
+
+  const customStyles = {
+    indicatorSeparator: provided => ({
+      ...provided,
+      backgroundColor: "none",
+    }),
+    indicatorsContainer: provided => ({
+      ...provided,
+      opacity: indicatorsContainer ? 1 : 0,
+      "& .css-tlfecz-indicatorContainer:first-of-type, .css-1gtu0rj-indicatorContainer:first-of-type": {
+        position: "absolute",
+        right: "-35px",
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      color: "#657C9A",
+      backgroundColor: state.isFocused ? "#E7F0FF" : "transparent",
+    }),
+    singleValue: provided => ({
+      ...provided,
+      color: "black",
+    }),
+    menuList: provided => ({
+      ...provided,
+      "&::-webkit-scrollbar": {
+        width: "10px",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#C1CFE0",
+        boxShadow: "inset 0 0 0 3px white",
+      },
+    }),
   };
 
   return (
@@ -47,34 +87,4 @@ export const SelectInput = ({ label, selectOptions, isMulti, ...props }) => {
       ) : null}
     </div>
   );
-};
-
-const customStyles = {
-  indicatorSeparator: provided => ({
-    ...provided,
-    backgroundColor: "none",
-  }),
-  indicatorsContainer: provided => ({
-    ...provided,
-    opacity: 0,
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    color: "#657C9A",
-    backgroundColor: state.isFocused ? "#E7F0FF" : "transparent",
-  }),
-  singleValue: provided => ({
-    ...provided,
-    color: "black",
-  }),
-  menuList: provided => ({
-    ...provided,
-    "&::-webkit-scrollbar": {
-      width: "10px",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "#C1CFE0",
-      boxShadow: "inset 0 0 0 3px white",
-    },
-  }),
 };
