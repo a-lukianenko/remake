@@ -9,3 +9,15 @@
   border: none;
   margin-top: -3rem;
 }
+
+@media screen and (max-width: 767px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fieldGroup {
+    margin-top: 20px;
+  }
+}

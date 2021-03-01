@@ -43,7 +43,7 @@ export const UserRecord = ({ user }) => {
 
   return (
     <tr className={isDelete ? rowShifted : row}>
-      <td>
+      <td data-label='name'>
         <Link to={`users/${username}`} className={name}>
           <AvatarPic src={avatar} width='40' height='40' />
           <div>
@@ -55,9 +55,11 @@ export const UserRecord = ({ user }) => {
           </div>
         </Link>
       </td>
-      <td>{company}</td>
-      <td>{email}</td>
-      <td>
+      <td data-label='company'>
+        <span>{company}</span>
+      </td>
+      <td data-label='email'>{email}</td>
+      <td data-label='last update'>
         {lastUpdate
           ? formatDistance(lastUpdate, Date.now(), {
               includeSeconds: true,

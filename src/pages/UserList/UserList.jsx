@@ -5,7 +5,7 @@ import { selectAllUsers, selectIsLoading } from "features/users/usersSlice";
 import { NoUsers } from "./NoUser/NoUsers";
 import { UserRecord } from "./UserRecord/UserRecord";
 
-import { thead, tbody, h2 } from "./UserList.module.css";
+import { table, thead, tbody, h2 } from "./UserList.module.css";
 import { Loader } from "components/Loader/Loader";
 
 export const UsersList = () => {
@@ -29,7 +29,7 @@ export const UsersList = () => {
   return (
     <section>
       <h2 className={h2}>List of users</h2>
-      <table className='striped-table'>
+      <table className={`${table} striped-table`}>
         <thead className={thead}>
           <tr>
             <th style={{ paddingLeft: 80 }}>name</th>

@@ -52,5 +52,15 @@ a.active {
   justify-content: space-between;
   margin: 0;
   list-style-type: none;
-  width: 300px;
+  width: fit-content;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .navbar ul {
+    margin-top: -1rem;
+    padding: 0;
+  }
 }

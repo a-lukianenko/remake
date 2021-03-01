@@ -1,3 +1,8 @@
+.capabilities {
+  display: flex;
+  justify-content: space-between;
+}
+
 .container {
   width: 100%;
   max-width: 300px;
@@ -15,4 +20,11 @@
 .inputStyle {
   width: 15px;
   height: 15px;
+}
+
+@media screen and (max-width: 767px) {
+  .capabilities {
+    flex-direction: column;
+    align-items: center;
+  }
 }

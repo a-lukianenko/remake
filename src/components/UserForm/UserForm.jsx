@@ -55,15 +55,13 @@ const FormStepper = ({ children, ...props }) => {
   const formEditStep = history.location.state?.formEditStep;
 
   const steps = Children.toArray(children);
-  const stepRef = useRef(0);
 
   const getStorageValues = () => {
     try {
       const { step, ...storageValues } = JSON.parse(
         localStorage.getItem("values")
       );
-      if (step) stepRef.current = step;
-      // TODO: add a test
+      // TODO: add a more thorough test
 
       if (
         !storageValues ||
@@ -149,14 +147,16 @@ const FormStepper = ({ children, ...props }) => {
     setStep(0);
   };
   const handleContinue = () => {
+    const newStep = JSON.parse(localStorage.getItem("values"))?.step || 0;
     setContinueForm(false);
     formik.setValues(getStorageValues(), true);
 
-    setStep(stepRef.current);
-    touched.current = stepRef.current;
+    setStep(newStep);
+    touched.current = newStep;
   };
 
   const valuesRef = useRef(formik.values);
+  const stepRef = useRef(step);
 
   useEffect(() => {
     valuesRef.current = isEqual(formik.values, initialValues)

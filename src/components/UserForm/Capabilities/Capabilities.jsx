@@ -3,6 +3,7 @@ import { SelectInput } from "components/Inputs/SelectInput/SelectInput";
 import { RadioInputGroup } from "components/Inputs/RadioInput/RadioInputGroup";
 import { TextAreaInput } from "components/Inputs/TextAreaInput/TextAreaInput";
 import {
+  capabilities,
   container,
   label,
   labelWrapper,
@@ -11,7 +12,7 @@ import {
 
 export const Capabilities = () => {
   return (
-    <div style={style.contacts}>
+    <div className={capabilities}>
       <div className={container}>
         <SelectInput
           id='skills'
@@ -43,11 +44,4 @@ export const Capabilities = () => {
       </div>
     </div>
   );
-};
-
-const style = {
-  contacts: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
 };

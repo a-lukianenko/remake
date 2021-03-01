@@ -1,6 +1,5 @@
 .profileDetails table {
   margin-top: 2rem;
-  max-width: 50%;
   font-weight: 500;
   color: #475666;
 }
@@ -43,4 +42,25 @@
   display: inline-block;
   transform: scaleX(-1);
   color: #475666;
+}
+
+@media screen and (max-width: 767px) {
+  .profileDetails {
+    width: 100%;
+  }
+
+  .profileDetails tr td {
+    padding-left: 10px;
+    min-width: unset !important;
+  }
+
+  .profileDetails tr td:first-child {
+    padding-top: 20px;
+    font-weight: bold;
+  }
+
+  .profileDetails img {
+    width: 160px;
+    height: 160px;
+  }
 }

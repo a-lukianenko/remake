@@ -23,3 +23,26 @@
   margin-left: 90px;
   padding: 13px 30px;
 }
+
+@media screen and (max-width: 767px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .formStep {
+    padding: 30px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 0;
+  }
+
+  .btnForward {
+    margin-left: 0;
+    padding: 13px 30px;
+  }
+}

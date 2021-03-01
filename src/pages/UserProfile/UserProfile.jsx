@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ProfileDetails } from "./ProfileDetails";
 import { selectAllUsers, selectIsLoading } from "features/users/usersSlice";
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
-import { headers, h2, flex, backToUsers } from "./UserProfile.module.css";
+import { headers, h2, profile, backToUsers } from "./UserProfile.module.css";
 import { Loader } from "components/Loader/Loader";
 
 export const UserProfile = ({ match }) => {
@@ -35,7 +35,7 @@ export const UserProfile = ({ match }) => {
       {(isLoading || (isLoading && !user)) && <Loader />}
 
       {!isLoading && user && (
-        <div className={flex}>
+        <div className={profile}>
           <AvatarPic
             src={user.avatar}
             width='200'

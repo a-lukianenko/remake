@@ -46,3 +46,21 @@
 .whiteBackground {
   background: white;
 }
+
+/* =============== */
+@media screen and (max-width: 767px) {
+  .name {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: start;
+  }
+
+  .row td:nth-of-type(2),
+  .row td:nth-of-type(3) {
+    max-width: unset;
+  }
+
+  .row td:last-child {
+    text-align: center;
+  }
+}
