@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/remake/static/css/main.76e3513f.chunk.css",
+    "main.js": "/remake/static/js/main.3db0d1bf.chunk.js",
+    "main.js.map": "/remake/static/js/main.3db0d1bf.chunk.js.map",
+    "runtime-main.js": "/remake/static/js/runtime-main.9cceb42d.js",
+    "runtime-main.js.map": "/remake/static/js/runtime-main.9cceb42d.js.map",
+    "static/css/2.00850458.chunk.css": "/remake/static/css/2.00850458.chunk.css",
+    "static/js/2.92b988d8.chunk.js": "/remake/static/js/2.92b988d8.chunk.js",
+    "static/js/2.92b988d8.chunk.js.map": "/remake/static/js/2.92b988d8.chunk.js.map",
+    "index.html": "/remake/index.html",
+    "static/css/2.00850458.chunk.css.map": "/remake/static/css/2.00850458.chunk.css.map",
+    "static/css/main.76e3513f.chunk.css.map": "/remake/static/css/main.76e3513f.chunk.css.map",
+    "static/js/2.92b988d8.chunk.js.LICENSE.txt": "/remake/static/js/2.92b988d8.chunk.js.LICENSE.txt",
+    "static/media/add.286d15e5.svg": "/remake/static/media/add.286d15e5.svg",
+    "static/media/addUser.4785b042.svg": "/remake/static/media/addUser.4785b042.svg",
+    "static/media/calendar.a179e10c.svg": "/remake/static/media/calendar.a179e10c.svg",
+    "static/media/eye.4dc7d3d4.svg": "/remake/static/media/eye.4dc7d3d4.svg",
+    "static/media/eyeStrike.ad5f0a86.svg": "/remake/static/media/eyeStrike.ad5f0a86.svg",
+    "static/media/minus.605dbf41.svg": "/remake/static/media/minus.605dbf41.svg",
+    "static/media/user.9ccab71c.svg": "/remake/static/media/user.9ccab71c.svg",
+    "static/media/userList.e119a432.svg": "/remake/static/media/userList.e119a432.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9cceb42d.js",
+    "static/css/2.00850458.chunk.css",
+    "static/js/2.92b988d8.chunk.js",
+    "static/css/main.76e3513f.chunk.css",
+    "static/js/main.3db0d1bf.chunk.js"
+  ]
+}
