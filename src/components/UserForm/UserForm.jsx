@@ -187,7 +187,7 @@ const FormStepper = ({ children, ...props }) => {
   };
   const isLastStep = () => step === steps.length - 1;
   const toStep = step => {
-    setStep(step);
+    formik.isValid && setStep(step);
   };
 
   return (
