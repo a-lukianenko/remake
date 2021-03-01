@@ -55,11 +55,21 @@ const FormStepper = ({ children, ...props }) => {
   const formEditStep = history.location.state?.formEditStep;
 
   const steps = Children.toArray(children);
+  const stepRef = useRef(0);
 
   const getStorageValues = () => {
     try {
-      const storageValues = JSON.parse(localStorage.getItem("values"));
-      // TODO: add a more thorough test
+      const { step, ...storageValues } = JSON.parse(
+        localStorage.getItem("values")
+      );
+      if (step) stepRef.current = step;
+      // TODO: add a test
+
+      if (
+        !storageValues ||
+        Object.keys(storageValues).length !== Object.keys(initialValues).length
+      )
+        return initialValues;
 
       const values = {
         ...storageValues,
@@ -71,17 +81,13 @@ const FormStepper = ({ children, ...props }) => {
     }
   };
 
-  const [continueForm, setContinueForm] = useState(() => {
-    return !isEqual(getStorageValues(), initialValues);
-  });
+  const [continueForm, setContinueForm] = useState(
+    () => !isEqual(getStorageValues(), initialValues)
+  );
 
-  const [step, setStep] = useState(() => {
-    if (formEditStep || formEditStep === 0) return formEditStep;
-    if (localStorage.getItem("values") && getStorageValues()?.step)
-      return getStorageValues().step;
-
-    return 0;
-  });
+  const [step, setStep] = useState(() =>
+    formEditStep || formEditStep === 0 ? formEditStep : 0
+  );
 
   const currentStep = steps[step];
 
@@ -89,8 +95,7 @@ const FormStepper = ({ children, ...props }) => {
     if (valuesToEdit)
       return { ...valuesToEdit, birthDate: new Date(valuesToEdit.birthDate) };
 
-    const inStorage = localStorage.getItem("values");
-    return inStorage ? getStorageValues() : initialValues;
+    return getStorageValues();
   };
 
   const getValidationSchema = validationSchema({
@@ -120,12 +125,13 @@ const FormStepper = ({ children, ...props }) => {
 
         dispatch(updateUserAsync(payload));
       } else if (isLastStep() && !valuesToEdit) {
+        const { step, ...valid } = values;
         const payload = {
-          ...values,
+          ...valid,
           birthDate: new Date(values.birthDate).getTime(),
         };
         dispatch(addUserAsync(payload));
-        // stepRef.current = 0;
+        stepRef.current = 0;
         valuesRef.current = null;
         localStorage.clear();
         history.push("/users");
@@ -143,31 +149,32 @@ const FormStepper = ({ children, ...props }) => {
     setStep(0);
   };
   const handleContinue = () => {
-    // const newStep = getStorageValues().step;
     setContinueForm(false);
     formik.setValues(getStorageValues(), true);
 
-    // setStep(newStep);
-    // touched.current = newStep;
+    setStep(stepRef.current);
+    touched.current = stepRef.current;
   };
 
   const valuesRef = useRef(formik.values);
-  // const stepRef = useRef(step);
 
   useEffect(() => {
     valuesRef.current = isEqual(formik.values, initialValues)
       ? null
       : formik.values;
-  }, [formik.values]);
+    stepRef.current = step;
+  }, [formik.values, step]);
 
   useEffect(() => {
     const saveLocal = () => {
       valuesRef.current &&
         localStorage.setItem(
           "values",
-          JSON.stringify({ ...valuesRef.current })
+          JSON.stringify({ ...valuesRef.current, step: stepRef.current })
         );
+      valuesRef.current = null;
     };
+
     !valuesToEdit &&
       window.addEventListener("beforeunload", saveLocal, { once: true });
     return () => {
