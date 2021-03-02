@@ -8,16 +8,14 @@ export const fetchUsersIDB = async () => {
 };
 
 export const addUserIDB = async user => {
-  const key = await user.username;
+  const key = await user.id;
   await db.collection("users").doc(key).set(user);
 };
 
-export const deleteUserIDB = async username => {
-  await db.collection("users").doc(username).delete();
+export const deleteUserIDB = async id => {
+  await db.collection("users").doc(id).delete();
 };
 
-export const updateUserIDB = async (key, user) => {
-  const insertKey = await user.username;
-  await db.collection("users").doc(key).delete();
-  await db.collection("users").doc(insertKey).set(user);
+export const updateUserIDB = async (userId, user) => {
+  await db.collection("users").doc(userId).set(user);
 };

@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { profileDetails } from "./ProfileDetails.module.css";
 
-export const ProfileDetails = ({ user, userId }) => {
+export const ProfileDetails = ({ user }) => {
   const {
+    id,
     username,
     password,
     firstName,
@@ -32,7 +33,7 @@ export const ProfileDetails = ({ user, userId }) => {
               Account{" "}
               <Link
                 to={{
-                  pathname: `/users/${userId}/edit`,
+                  pathname: `/users/${id}/edit`,
                   state: { formEditStep: 0 },
                 }}
                 className='edit'
@@ -55,7 +56,7 @@ export const ProfileDetails = ({ user, userId }) => {
               Personal{" "}
               <Link
                 to={{
-                  pathname: `/users/${userId}/edit`,
+                  pathname: `/users/${id}/edit`,
                   state: { formEditStep: 1 },
                 }}
                 className='edit'
@@ -96,7 +97,7 @@ export const ProfileDetails = ({ user, userId }) => {
               Contacts{" "}
               <Link
                 to={{
-                  pathname: `/users/${userId}/edit`,
+                  pathname: `/users/${id}/edit`,
                   state: { formEditStep: 2 },
                 }}
                 className='edit'
@@ -138,7 +139,7 @@ export const ProfileDetails = ({ user, userId }) => {
               Capabilities{" "}
               <Link
                 to={{
-                  pathname: `/users/${userId}/edit`,
+                  pathname: `/users/${id}/edit`,
                   state: { formEditStep: 3 },
                 }}
                 className='edit'

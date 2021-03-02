@@ -14,7 +14,7 @@ export const EditProfile = ({ match }) => {
   const users = useSelector(selectAllUsers);
   const isLoading = useSelector(state => state.users.isLoading);
   const { userId } = match.params;
-  const user = users.find(user => user.username === userId);
+  const user = users.find(user => user.id === userId);
 
   return (
     <section>
@@ -35,9 +35,7 @@ export const EditProfile = ({ match }) => {
         <h3 style={{ textAlign: "center" }}>No user under ID: {userId}</h3>
       )}
 
-      {!isLoading && user && (
-        <UserForm valuesToEdit={user} userKey={user.username} />
-      )}
+      {!isLoading && user && <UserForm valuesToEdit={user} userId={userId} />}
     </section>
   );
 };

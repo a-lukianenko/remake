@@ -10,7 +10,7 @@ export const UserProfile = ({ match }) => {
   const users = useSelector(selectAllUsers);
   const isLoading = useSelector(selectIsLoading);
   const { userId } = match.params;
-  const user = users.find(user => user.username === userId);
+  const user = users.find(user => user.id === userId);
 
   return (
     <section>
@@ -42,7 +42,7 @@ export const UserProfile = ({ match }) => {
             height='200'
             style={{ border: "3px solid #5E97F3", padding: "10px" }}
           />
-          <ProfileDetails user={user} userId={userId} />
+          <ProfileDetails user={user} />
         </div>
       )}
     </section>

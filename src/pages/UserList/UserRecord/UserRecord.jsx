@@ -22,6 +22,7 @@ export const UserRecord = ({ user }) => {
   const dispatch = useDispatch();
 
   const {
+    id,
     username,
     avatar,
     firstName,
@@ -39,12 +40,12 @@ export const UserRecord = ({ user }) => {
     setIsDelete(false);
   };
 
-  const deleteRecord = () => dispatch(deleteUserAsync(username));
+  const deleteRecord = () => dispatch(deleteUserAsync(id));
 
   return (
     <tr className={isDelete ? rowShifted : row}>
       <td data-label='name'>
-        <Link to={`users/${username}`} className={name}>
+        <Link to={`users/${id}`} className={name}>
           <AvatarPic src={avatar} width='40' height='40' />
           <div>
             <span>
@@ -71,7 +72,7 @@ export const UserRecord = ({ user }) => {
         {!isDelete && (
           <Link
             to={{
-              pathname: `/users/${username}/edit`,
+              pathname: `/users/${id}/edit`,
               state: { formEditStep: 0 },
             }}
             title='edit'

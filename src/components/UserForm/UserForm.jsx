@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, Children, useMemo } from "react";
 import { useSelector } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
 import { Form, useFormik, FormikProvider } from "formik";
 import { useHistory } from "react-router-dom";
 import isEqual from "lodash.isequal";
@@ -34,9 +35,9 @@ import {
 import { useDispatch } from "react-redux";
 import { UnsavedData } from "components/Modals/UnsavedData/UnsavedData";
 
-export const UserForm = ({ valuesToEdit, userKey }) => {
+export const UserForm = ({ valuesToEdit, userId }) => {
   return (
-    <FormStepper valuesToEdit={valuesToEdit} userKey={userKey}>
+    <FormStepper valuesToEdit={valuesToEdit} userId={userId}>
       <Account isEditing={Boolean(valuesToEdit)} />
       <Profile />
       <Contacts />
@@ -46,7 +47,7 @@ export const UserForm = ({ valuesToEdit, userKey }) => {
 };
 
 const FormStepper = ({ children, ...props }) => {
-  const { valuesToEdit, userKey } = props;
+  const { valuesToEdit, userId } = props;
   const users = useSelector(selectAllUsers);
   const usernames = useMemo(() => users.map(u => u.username), [users]);
   const emails = useMemo(() => users.map(u => u.email), [users]);
@@ -117,7 +118,7 @@ const FormStepper = ({ children, ...props }) => {
             birthDate: new Date(values.birthDate).getTime(),
             lastUpdate: Date.now(),
           },
-          key: userKey,
+          userId,
           history,
         };
 
@@ -127,6 +128,7 @@ const FormStepper = ({ children, ...props }) => {
         const payload = {
           ...valid,
           birthDate: new Date(values.birthDate).getTime(),
+          id: nanoid(),
         };
         dispatch(addUserAsync(payload));
         stepRef.current = 0;

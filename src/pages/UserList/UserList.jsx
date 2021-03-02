@@ -14,7 +14,7 @@ export const UsersList = () => {
 
   const tableContent =
     users?.length > 0
-      ? users.map(user => <UserRecord user={user} key={user.username} />)
+      ? users.map(user => <UserRecord user={user} key={user.id} />)
       : users;
 
   if (isLoading)

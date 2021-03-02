@@ -24,18 +24,18 @@ export const addUserAsync = createAsyncThunk(
 
 export const deleteUserAsync = createAsyncThunk(
   "users/deleteUserAsync",
-  async username => {
-    await deleteUserIDB(username);
-    return username;
+  async id => {
+    await deleteUserIDB(id);
+    return id;
   }
 );
 
 export const updateUserAsync = createAsyncThunk(
   "users/updateUserAsync",
   async payload => {
-    const { key, user } = payload;
-    await updateUserIDB(key, user);
-    payload.history.push(`/users/${user.username}`);
+    const { userId, user } = payload;
+    await updateUserIDB(userId, user);
+    payload.history.push(`/users/${userId}`);
     return payload;
   }
 );
@@ -73,7 +73,7 @@ const options = {
     [deleteUserAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.hasError = false;
-      state.users = state.users.filter(u => u.username !== action.payload);
+      state.users = state.users.filter(u => u.id !== action.id);
     },
     // update user
     [updateUserAsync.pending]: (state, action) => {
@@ -84,9 +84,7 @@ const options = {
       const { user } = action.payload;
       state.isLoading = false;
       state.hasError = false;
-      state.users = state.users.map(u =>
-        u.username === user.username ? user : u
-      );
+      state.users = state.users.map(u => (u.id === user.id ? user : u));
     },
     [updateUserAsync.rejected]: (state, action) => {
       state.isLoading = false;
