@@ -175,3 +175,8 @@ export const UserProfileType = {
     }),
   }).isRequired,
 };
+
+export const SearchInputType = {
+  searchTerm: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
+};
