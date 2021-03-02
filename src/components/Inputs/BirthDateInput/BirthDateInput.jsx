@@ -7,9 +7,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./BirthDateInput.css";
 import { ReactComponent as Calender } from "assets/img/calendar.svg";
 
+import { BirthDateInputType } from "types/types";
+
 registerLocale("en-gb", enGb);
 
-export const BirthDateInput = ({ label, id, ...props }) => {
+export const BirthDateInput = ({ label = "Birth date", id, ...props }) => {
   const [field, meta, helpers] = useField(props);
   const { setValue, setTouched } = helpers;
   const { name, value } = field;
@@ -47,3 +49,5 @@ export const BirthDateInput = ({ label, id, ...props }) => {
     </div>
   );
 };
+
+BirthDateInput.propTypes = BirthDateInputType;

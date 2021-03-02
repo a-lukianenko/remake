@@ -42,8 +42,6 @@ export const Profile = () => {
           id='address'
           name='address'
           label='Address'
-          type='search'
-          autoComplete='off'
           placeholder='Search address'
         />
 

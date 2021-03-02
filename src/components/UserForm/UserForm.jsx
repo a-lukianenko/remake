@@ -7,12 +7,7 @@ import isEqual from "lodash.isequal";
 import classNames from "classnames/bind";
 
 import { Account } from "./Account/Account";
-import {
-  formHeaders,
-  validationSchema,
-  //initialValuesFilled, for testing
-  initialValues,
-} from "utils/formData";
+import { formHeaders, validationSchema, initialValues } from "utils/formData";
 
 import { Profile } from "./Profile/Profile";
 import { Contacts } from "./Contacts/Contacts";
@@ -34,11 +29,12 @@ import {
 
 import { useDispatch } from "react-redux";
 import { UnsavedData } from "components/Modals/UnsavedData/UnsavedData";
+import { FormStepperType, UserFormType } from "types/types";
 
 export const UserForm = ({ valuesToEdit, userId }) => {
   return (
     <FormStepper valuesToEdit={valuesToEdit} userId={userId}>
-      <Account isEditing={Boolean(valuesToEdit)} />
+      <Account />
       <Profile />
       <Contacts />
       <Capabilities />
@@ -235,3 +231,6 @@ const FormStepper = ({ children, ...props }) => {
     </FormikProvider>
   );
 };
+
+UserForm.propTypes = UserFormType;
+FormStepper.propTypes = FormStepperType;

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useField } from "formik";
 import Select from "react-select";
+import { SelectInputType } from "types/types";
 
 export const SelectInput = ({
-  label,
+  label = "Select",
   selectOptions,
   isMulti,
   indicatorsContainer,
@@ -88,3 +89,5 @@ export const SelectInput = ({
     </div>
   );
 };
+
+SelectInput.propTypes = SelectInputType;

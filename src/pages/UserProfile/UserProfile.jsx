@@ -5,6 +5,7 @@ import { selectAllUsers, selectIsLoading } from "features/users/usersSlice";
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
 import { headers, h2, profile, backToUsers } from "./UserProfile.module.css";
 import { Loader } from "components/Loader/Loader";
+import { UserProfileType } from "types/types";
 
 export const UserProfile = ({ match }) => {
   const users = useSelector(selectAllUsers);
@@ -48,3 +49,5 @@ export const UserProfile = ({ match }) => {
     </section>
   );
 };
+
+UserProfile.propTypes = UserProfileType;

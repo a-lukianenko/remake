@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { profileDetails } from "./ProfileDetails.module.css";
+import { ProfileDetailsType } from "types/types";
 
 export const ProfileDetails = ({ user }) => {
   const {
@@ -165,3 +166,5 @@ export const ProfileDetails = ({ user }) => {
     </div>
   );
 };
+
+ProfileDetails.propTypes = ProfileDetailsType;

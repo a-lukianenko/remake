@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useField } from "formik";
 import PlacesAutocomplete from "react-places-autocomplete";
 
-export const AddressInput = ({ label, id, ...props }) => {
+import { AddressInputType } from "types/types";
+
+export const AddressInput = ({ label = "address", id, ...props }) => {
   const [field, , helpers] = useField(props);
   const { setValue } = helpers;
   const { value, name } = field;
@@ -27,6 +29,7 @@ export const AddressInput = ({ label, id, ...props }) => {
               {...getInputProps({
                 id,
                 name,
+                type: "search",
                 ...props,
               })}
             />
@@ -53,3 +56,5 @@ export const AddressInput = ({ label, id, ...props }) => {
     </div>
   );
 };
+
+AddressInput.propTypes = AddressInputType;

@@ -8,6 +8,7 @@ import {
   label,
   avatarError,
 } from "./AvatarInput.module.css";
+import { AvatarInputType } from "types/types";
 
 export const AvatarInput = ({ name, hasBorder }) => {
   const [field, meta, helpers] = useField(name);
@@ -103,3 +104,5 @@ export const AvatarInput = ({ name, hasBorder }) => {
     </div>
   );
 };
+
+AvatarInput.propTypes = AvatarInputType;

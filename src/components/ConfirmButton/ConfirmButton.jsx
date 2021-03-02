@@ -1,4 +1,5 @@
 import { deleteBtn, deleteBtnRed } from "./ConfirmButton.module.css";
+import { ConfirmButtonType } from "types/types";
 
 export const ConfirmButton = ({
   isConfirmed,
@@ -19,3 +20,5 @@ export const ConfirmButton = ({
     </button>
   );
 };
+
+ConfirmButton.propTypes = ConfirmButtonType;

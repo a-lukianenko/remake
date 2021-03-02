@@ -16,6 +16,7 @@ import {
   whiteBackground,
 } from "./UserRecord.module.css";
 import { deleteUserAsync } from "features/users/usersSlice";
+import { UserRecordType } from "types/types";
 
 export const UserRecord = ({ user }) => {
   const [isDelete, setIsDelete] = useState(false);
@@ -89,9 +90,11 @@ export const UserRecord = ({ user }) => {
           finalAction={deleteRecord}
           cancelAction={cancelDelete}
           title={String.fromCharCode(0x2716)}
-          confirmTitle={`${String.fromCharCode(0x2716)} delete`}
+          confirmTitle={`${String.fromCharCode(0x2716)}  delete`}
         />
       </td>
     </tr>
   );
 };
+
+UserRecord.propTypes = UserRecordType;

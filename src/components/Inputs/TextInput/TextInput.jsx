@@ -12,7 +12,9 @@ import {
 import { ReactComponent as Eye } from "assets/img/eye.svg";
 import { ReactComponent as EyeStrike } from "assets/img/eyeStrike.svg";
 
-export const TextInput = ({ label, type, ...props }) => {
+import { TextInputType } from "types/types";
+
+export const TextInput = ({ label, type = "text", ...props }) => {
   const [field, meta] = useField(props);
   // const { touched, error } = meta;
 
@@ -52,3 +54,5 @@ export const TextInput = ({ label, type, ...props }) => {
     </div>
   );
 };
+
+TextInput.propTypes = TextInputType;

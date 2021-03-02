@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import css from "./FormHeaders.module.css";
 
+import { FormHeadersType } from "types/types";
+
 const cx = classNames.bind(css);
 
 export const FormHeaders = ({
@@ -49,3 +51,5 @@ export const FormHeaders = ({
     </div>
   );
 };
+
+FormHeaders.propTypes = FormHeadersType;

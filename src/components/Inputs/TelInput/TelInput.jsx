@@ -2,8 +2,14 @@ import InputMask from "react-input-mask";
 import { useField } from "formik";
 import { ReactComponent as Minus } from "assets/img/minus.svg";
 import { container, btn, input } from "./TelInput.module.css";
+import { TelInputType } from "types/types";
 
-export const TelInput = ({ label, removePhone, isRemovable, ...props }) => {
+export const TelInput = ({
+  label = "Phone",
+  removePhone,
+  isRemovable,
+  ...props
+}) => {
   const [field, meta] = useField(props);
   // const { touched, error } = meta;
 
@@ -34,3 +40,5 @@ export const TelInput = ({ label, removePhone, isRemovable, ...props }) => {
     </div>
   );
 };
+
+TelInput.propTypes = TelInputType;

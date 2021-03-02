@@ -1,4 +1,5 @@
 import { RadioInput } from "./RadioInput";
+import { RadioInputGroupType } from "types/types";
 
 export const RadioInputGroup = ({
   type,
@@ -29,3 +30,5 @@ export const RadioInputGroup = ({
     </div>
   );
 };
+
+RadioInputGroup.propTypes = RadioInputGroupType;

@@ -9,6 +9,7 @@ import {
 } from "../UserProfile/UserProfile.module.css";
 import { selectAllUsers } from "features/users/usersSlice";
 import { Loader } from "components/Loader/Loader";
+import { EditProfileType } from "types/types";
 
 export const EditProfile = ({ match }) => {
   const users = useSelector(selectAllUsers);
@@ -39,3 +40,5 @@ export const EditProfile = ({ match }) => {
     </section>
   );
 };
+
+EditProfile.propTypes = EditProfileType;

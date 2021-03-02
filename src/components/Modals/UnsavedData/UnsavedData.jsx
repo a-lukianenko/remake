@@ -1,3 +1,4 @@
+import { UnsavedDataType } from "types/types";
 import { modal, continueBtn, reset } from "./UnsavedData.module.css";
 
 export const UnsavedData = ({ continueForm, resetForm }) => {
@@ -13,3 +14,5 @@ export const UnsavedData = ({ continueForm, resetForm }) => {
     </div>
   );
 };
+
+UnsavedData.propTypes = UnsavedDataType;

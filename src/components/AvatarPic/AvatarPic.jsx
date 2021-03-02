@@ -1,5 +1,6 @@
 import placeholder from "assets/img/user.svg";
 import { avatarPic } from "./AvatarPic.module.css";
+import { AvatarPicType } from "types/types";
 
 export const AvatarPic = ({
   src,
@@ -19,3 +20,5 @@ export const AvatarPic = ({
     />
   );
 };
+
+AvatarPic.propTypes = AvatarPicType;

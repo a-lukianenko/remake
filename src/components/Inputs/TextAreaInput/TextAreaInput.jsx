@@ -1,6 +1,12 @@
 import { useField } from "formik";
+import { TextAreaInputType } from "types/types";
 
-export const TextAreaInput = ({ label, id, isResizable, ...props }) => {
+export const TextAreaInput = ({
+  label = "Additional info",
+  id,
+  isResizable,
+  ...props
+}) => {
   const [field, meta] = useField(props);
 
   return (
@@ -17,3 +23,5 @@ export const TextAreaInput = ({ label, id, isResizable, ...props }) => {
     </>
   );
 };
+
+TextAreaInput.propTypes = TextAreaInputType;

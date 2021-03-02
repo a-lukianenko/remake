@@ -1,4 +1,5 @@
 import { useField } from "formik";
+import { RadioInputType } from "types/types";
 
 export const RadioInput = ({
   name,
@@ -18,3 +19,5 @@ export const RadioInput = ({
     </label>
   );
 };
+
+RadioInput.propTypes = RadioInputType;

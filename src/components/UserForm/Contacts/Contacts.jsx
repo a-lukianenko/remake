@@ -74,7 +74,7 @@ export const Contacts = () => {
         />
       </div>
       <div className={container}>
-        <TelInput id='fax' label='Fax' name='fax' type='tel' />
+        <TelInput id='fax' label='Fax' name='fax' />
         {phones.map((phone, i) => (
           <TelInput
             key={i.toString()}

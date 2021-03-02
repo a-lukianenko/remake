@@ -73,7 +73,7 @@ const options = {
     [deleteUserAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.hasError = false;
-      state.users = state.users.filter(u => u.id !== action.id);
+      state.users = state.users.filter(u => u.id !== action.payload);
     },
     // update user
     [updateUserAsync.pending]: (state, action) => {
