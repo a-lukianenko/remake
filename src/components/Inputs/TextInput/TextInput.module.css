@@ -9,13 +9,6 @@
   border: 1px solid var(--danger);
 }
 
-/* .labelText {
-  position: relative;
-  font-size: 14px;
-  font-weight: normal;
-  color: #657c9a;
-} */
-
 .required {
   position: absolute;
   right: 0;
@@ -28,7 +21,6 @@
   color: var(--danger);
 }
 
-/* password input */
 .passwordInput {
   position: relative;
 }
@@ -38,7 +30,6 @@
   right: 10px;
   bottom: 6px;
   font-size: 1.6rem;
-  /* color: grey; */
   cursor: pointer;
 }
 

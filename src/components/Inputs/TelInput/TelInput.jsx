@@ -11,7 +11,6 @@ export const TelInput = ({
   ...props
 }) => {
   const [field, meta] = useField(props);
-  // const { touched, error } = meta;
 
   return (
     <div className={container}>

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ProfileDetails } from "./ProfileDetails";
+import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
 import { selectAllUsers, selectIsLoading } from "features/users/usersSlice";
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
 import { headers, h2, profile, backToUsers } from "./UserProfile.module.css";

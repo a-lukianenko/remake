@@ -11,9 +11,7 @@ import {
 import { AvatarInputType } from "types/types";
 
 export const AvatarInput = ({ name, hasBorder }) => {
-  const [field, meta, helpers] = useField(name);
-  const { value } = field;
-  const { setValue, setError } = helpers;
+  const [{ value }, { error }, { setValue, setError }] = useField(name);
 
   const avatarInitialData = { labelName: "", url: value };
 
@@ -67,12 +65,14 @@ export const AvatarInput = ({ name, hasBorder }) => {
     onDropAccepted: () => setAvatarBg(prev => ({ ...prev, opacity: 1 })),
     onDropRejected: fileRejections => {
       const { errors, file } = fileRejections[0];
-      setError(`${file.name}: \n ${errors[0].message}`);
+      fileRejections.length > 0
+        ? setError(`${errors[0].message}`)
+        : setError(`${file.name}: \n ${errors[0].message}`);
 
       setAvatarData(avatarInitialData);
 
       setAvatarBg(prev => ({ ...prev, opacity: 1 }));
-      setTimeout(setError, 2000, null);
+      setTimeout(setError, 2_500, null);
     },
   });
 
@@ -89,7 +89,7 @@ export const AvatarInput = ({ name, hasBorder }) => {
           height='170px'
           style={avatarBg}
         />
-        {meta.error && <div className={avatarError}>{meta.error}</div>}
+        {error && <div className={avatarError}>{error}</div>}
         <br />
         <span>{avatarData.labelName}</span>
 

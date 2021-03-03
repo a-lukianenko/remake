@@ -36,7 +36,6 @@ button {
 section {
   margin: 0 auto;
   max-width: 970px;
-  /* text-align: center; */
 }
 
 a {
@@ -50,9 +49,7 @@ td {
 [type="checkbox"],
 [type="radio"] {
   box-sizing: border-box;
-  /* 1 */
   padding: 0;
-  /* 2 */
   width: 25px;
   height: 25px;
 }
@@ -68,7 +65,6 @@ td {
   right: 0;
   top: 5px;
 }
-
 
 .error {
   line-height: 1;
