@@ -19,3 +19,7 @@ export const deleteUserIDB = async id => {
 export const updateUserIDB = async (userId, user) => {
   await db.collection("users").doc(userId).set(user);
 };
+
+export const addFakeUsersIDB = async users => {
+  await db.collection("users").set(users, { keys: true });
+};

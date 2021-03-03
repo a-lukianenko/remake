@@ -6,6 +6,7 @@
 .container {
   width: 100%;
   max-width: 300px;
+  margin-right: 2rem;
 }
 
 .labels {

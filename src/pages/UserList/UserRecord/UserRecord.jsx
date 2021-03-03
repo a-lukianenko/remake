@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { formatDistance } from "date-fns";
 
 import { AvatarPic } from "components/AvatarPic/AvatarPic";
-import { ConfirmButton } from "components/ConfirmButton/ConfirmButton";
+import { ConfirmButton } from "components/Buttons/ConfirmButton/ConfirmButton";
 
 import {
   name,

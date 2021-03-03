@@ -9,9 +9,11 @@ import { UserRecord } from "./UserRecord/UserRecord";
 import { table, thead, tbody, h2 } from "./UserList.module.css";
 import { Loader } from "components/Loader/Loader";
 import { SearchInput } from "components/Inputs/SearchInput/SearchInput";
+import { GenerateAccountsBtn } from "components/Buttons/GenerateAccountsBtn/GenerateAccountsBtn";
 
 export const UsersList = () => {
   const users = useSelector(selectAllUsers);
+
   const isLoading = useSelector(selectIsLoading);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -55,6 +57,7 @@ export const UsersList = () => {
         <tbody className={tbody}>{tableContent}</tbody>
       </table>
       {!tableContent.length && <NoUsers />}
+      <GenerateAccountsBtn />
     </section>
   );
 };

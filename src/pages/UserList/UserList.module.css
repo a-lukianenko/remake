@@ -1,3 +1,11 @@
+.table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
 .thead {
   background: #4e86e4;
 }
@@ -18,14 +26,9 @@
   padding: 2.5rem 0 1.5rem;
 }
 
-/* ============= */
-
-.table {
-  border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  table-layout: fixed;
+.generateBtn {
+  display: block;
+  margin: 1rem auto 3rem;
 }
 
 @media screen and (max-width: 767px) {

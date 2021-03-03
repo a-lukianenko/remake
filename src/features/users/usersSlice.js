@@ -4,6 +4,7 @@ import {
   addUserIDB,
   deleteUserIDB,
   updateUserIDB,
+  addFakeUsersIDB,
 } from "./indexedDB";
 
 export const fetchUsersAsync = createAsyncThunk(
@@ -37,6 +38,14 @@ export const updateUserAsync = createAsyncThunk(
     await updateUserIDB(userId, user);
     payload.history.push(`/users/${userId}`);
     return payload;
+  }
+);
+
+export const generateUsersAsync = createAsyncThunk(
+  "users/generateUsersAsync",
+  async users => {
+    await addFakeUsersIDB(users);
+    return users;
   }
 );
 
@@ -89,6 +98,20 @@ const options = {
     [updateUserAsync.rejected]: (state, action) => {
       state.isLoading = false;
       state.hasError = true;
+    },
+    // generate fake users
+    [generateUsersAsync.pending]: (state, action) => {
+      state.isLoading = true;
+      state.hasError = false;
+    },
+    [generateUsersAsync.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.hasError = true;
+    },
+    [generateUsersAsync.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.hasError = false;
+      state.users = action.payload;
     },
   },
 };
