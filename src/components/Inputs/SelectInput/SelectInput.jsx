@@ -11,7 +11,7 @@ export const SelectInput = ({
   ...props
 }) => {
   const [field, meta, helpers] = useField(props);
-  let { value } = field;
+  const { value } = field;
 
   const initial =
     value.length > 0 ? value.map(value => ({ value, label: value })) : null;

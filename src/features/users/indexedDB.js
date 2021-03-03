@@ -1,6 +1,6 @@
 import Localbase from "localbase";
 
-let db = new Localbase("db");
+const db = new Localbase("db");
 
 export const fetchUsersIDB = async () => {
   const users = await db.collection("users").get();
