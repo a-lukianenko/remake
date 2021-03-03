@@ -1,5 +1,6 @@
-import { deleteBtn, deleteBtnRed } from "./ConfirmButton.module.css";
+import "./ConfirmButton.css";
 import { ConfirmButtonType } from "types/types";
+import classNames from "classnames";
 
 export const ConfirmButton = ({
   isConfirmed,
@@ -14,7 +15,7 @@ export const ConfirmButton = ({
       title={title}
       onClick={isConfirmed ? finalAction : confirmAction}
       onBlur={cancelAction}
-      className={isConfirmed ? `${deleteBtn} ${deleteBtnRed}` : deleteBtn}
+      className={classNames("deleteBtn", { deleteBtnRed: isConfirmed })}
     >
       {isConfirmed ? confirmTitle : title}
     </button>
