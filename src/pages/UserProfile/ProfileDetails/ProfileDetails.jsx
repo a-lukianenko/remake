@@ -46,7 +46,7 @@ export const ProfileDetails = ({ user }) => {
             <td>{username}</td>
           </tr>
           <tr>
-            <td></td>
+            <td />
             <td>Password</td>
             <td>{password.replaceAll(/./g, "*")}</td>
           </tr>
@@ -70,24 +70,24 @@ export const ProfileDetails = ({ user }) => {
             <td>{firstName}</td>
           </tr>
           <tr>
-            <td></td>
+            <td />
             <td>Last name</td>
             <td>{lastName}</td>
           </tr>
           <tr>
-            <td></td>
+            <td />
             <td>Birthdate</td>
             <td>{new Date(birthDate).toLocaleDateString()}</td>
           </tr>
           <tr>
-            <td></td>
+            <td />
             <td>Email</td>
             <td>
               <a href={`mailto: ${email}`}>{email}</a>
             </td>
           </tr>
           <tr>
-            <td></td>
+            <td />
             <td>Address</td>
             <td>{address}</td>
           </tr>
@@ -111,7 +111,7 @@ export const ProfileDetails = ({ user }) => {
             <td>{company}</td>
           </tr>
           <tr>
-            <td></td>
+            <td />
             <td>Fax</td>
             <td>{fax}</td>
           </tr>

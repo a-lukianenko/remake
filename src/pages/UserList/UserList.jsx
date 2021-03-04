@@ -67,7 +67,7 @@ export const UsersList = () => {
             <th>company</th>
             <th>contacts</th>
             <th>last update</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody className={tbody}>{tableContent}</tbody>
