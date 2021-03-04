@@ -25,7 +25,7 @@ export const Contacts = () => {
         []
       );
       const unfilled = data.filter(
-        (phone, i) => !present.includes(Object.keys(phone)[0])
+        phone => !present.includes(Object.keys(phone)[0])
       );
       const [nextToAdd] = unfilled.sort(
         (prev, next) =>

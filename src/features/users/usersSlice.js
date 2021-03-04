@@ -59,7 +59,7 @@ const options = {
   reducers: {},
   extraReducers: {
     // fetch users
-    [fetchUsersAsync.pending]: (state, action) => {
+    [fetchUsersAsync.pending]: state => {
       state.isLoading = true;
       state.hasError = false;
     },
@@ -68,7 +68,7 @@ const options = {
       state.hasError = false;
       state.users = action.payload;
     },
-    [fetchUsersAsync.rejected]: (state, action) => {
+    [fetchUsersAsync.rejected]: state => {
       state.isLoading = false;
       state.hasError = true;
     },
@@ -85,7 +85,7 @@ const options = {
       state.users = state.users.filter(u => u.id !== action.payload);
     },
     // update user
-    [updateUserAsync.pending]: (state, action) => {
+    [updateUserAsync.pending]: state => {
       state.isLoading = true;
       state.hasError = false;
     },
@@ -95,16 +95,16 @@ const options = {
       state.hasError = false;
       state.users = state.users.map(u => (u.id === user.id ? user : u));
     },
-    [updateUserAsync.rejected]: (state, action) => {
+    [updateUserAsync.rejected]: state => {
       state.isLoading = false;
       state.hasError = true;
     },
     // generate fake users
-    [generateUsersAsync.pending]: (state, action) => {
+    [generateUsersAsync.pending]: state => {
       state.isLoading = true;
       state.hasError = false;
     },
-    [generateUsersAsync.rejected]: (state, action) => {
+    [generateUsersAsync.rejected]: state => {
       state.isLoading = false;
       state.hasError = true;
     },

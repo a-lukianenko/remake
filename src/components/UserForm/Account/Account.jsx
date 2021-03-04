@@ -22,7 +22,6 @@ export const Account = () => {
           type='password'
           id='password'
           name='password'
-          className='password-field'
           required
         />
 
@@ -31,7 +30,6 @@ export const Account = () => {
           type='password'
           id='passwordRepeat'
           name='passwordRepeat'
-          className='password-field'
           required
         />
       </div>
