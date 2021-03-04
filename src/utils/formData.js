@@ -120,7 +120,11 @@ export const initialValues = {
   hobbies: [],
 };
 
-export const validationSchema = ({ usernames = [], emails = [], step = 0 }) => {
+export const getValidationSchema = ({
+  usernames = [],
+  emails = [],
+  step = 0,
+}) => {
   const account = object({
     avatar: string(),
     username: string()

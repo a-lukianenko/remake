@@ -3,8 +3,7 @@ import Localbase from "localbase";
 const db = new Localbase("db");
 
 export const fetchUsersIDB = async () => {
-  const users = await db.collection("users").get();
-  return users;
+  return db.collection("users").get();
 };
 
 export const addUserIDB = async user => {
