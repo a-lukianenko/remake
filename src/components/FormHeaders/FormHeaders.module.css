@@ -22,12 +22,12 @@
   color: black;
 }
 
-.hidden {
-  display: none;
-}
-
 @media screen and (max-width: 767px) {
   .formHeaders {
     display: block;
+  }
+
+  .hidden {
+    display: none;
   }
 }

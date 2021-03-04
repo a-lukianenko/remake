@@ -23,3 +23,14 @@
   margin-left: 90px;
   padding: 13px 30px;
 }
+
+@media screen and (max-width: 767px) {
+  .formStep {
+    padding: 85px 20px;
+  }
+
+  .buttons {
+    margin-right: 70px;
+    text-align: right;
+  }
+}
