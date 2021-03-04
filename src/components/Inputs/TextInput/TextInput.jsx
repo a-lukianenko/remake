@@ -15,8 +15,7 @@ import { ReactComponent as EyeStrike } from "assets/img/eyeStrike.svg";
 import { TextInputType } from "types/types";
 
 export const TextInput = ({ label, type = "text", ...props }) => {
-  const [field, meta] = useField(props);
-  // const { touched, error } = meta;
+  const [field, meta, helpers] = useField(props);
 
   const [inputType, setInputType] = useState(type);
 

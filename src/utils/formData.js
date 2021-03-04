@@ -120,6 +120,29 @@ export const initialValues = {
   hobbies: [],
 };
 
+export const getStorageValues = () => {
+  try {
+    const { step, ...storageValues } = JSON.parse(
+      localStorage.getItem("values")
+    );
+    // TODO: add a more thorough test
+
+    if (
+      !storageValues ||
+      Object.keys(storageValues).length !== Object.keys(initialValues).length
+    )
+      return initialValues;
+
+    const values = {
+      ...storageValues,
+      birthDate: new Date(storageValues.birthDate),
+    };
+    return values;
+  } catch (e) {
+    return initialValues;
+  }
+};
+
 export const getValidationSchema = ({
   usernames = [],
   emails = [],

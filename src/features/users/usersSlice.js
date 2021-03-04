@@ -1,4 +1,9 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from "@reduxjs/toolkit";
+
 import {
   fetchUsersIDB,
   addUserIDB,
@@ -120,6 +125,15 @@ const usersSlice = createSlice(options);
 
 // selectors
 export const selectAllUsers = state => state.users.users;
+
+export const selectAllUsernames = createSelector(selectAllUsers, users =>
+  users.map(user => user.username)
+);
+
+export const selectAllEmails = createSelector(selectAllUsers, users =>
+  users.map(user => user.email)
+);
+
 export const selectIsLoading = state => state.users.isLoading;
 
 export default usersSlice.reducer;

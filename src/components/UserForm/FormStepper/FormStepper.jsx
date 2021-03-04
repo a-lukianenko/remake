@@ -8,6 +8,7 @@ import classNames from "classnames/bind";
 
 import {
   formHeaders,
+  getStorageValues,
   getValidationSchema,
   initialValues,
 } from "utils/formData";
@@ -23,7 +24,8 @@ import {
 
 import {
   addUserAsync,
-  selectAllUsers,
+  selectAllEmails,
+  selectAllUsernames,
   updateUserAsync,
 } from "features/users/usersSlice";
 
@@ -31,39 +33,14 @@ import { useDispatch } from "react-redux";
 import { UnsavedData } from "components/Modals/UnsavedData/UnsavedData";
 import { FormStepperType } from "types/types";
 
-export const FormStepper = ({ children, ...props }) => {
-  const { valuesToEdit, userId } = props;
-  const users = useSelector(selectAllUsers);
-  const usernames = useMemo(() => users.map(u => u.username), [users]);
-  const emails = useMemo(() => users.map(u => u.email), [users]);
+export const FormStepper = ({ children, valuesToEdit, userId }) => {
+  const { usernames, emails } = useSelector(mapStateToProps);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const formEditStep = history.location.state?.formEditStep;
 
   const steps = Children.toArray(children);
-
-  const getStorageValues = () => {
-    try {
-      const { step, ...storageValues } = JSON.parse(
-        localStorage.getItem("values")
-      );
-      // TODO: add a more thorough test
-
-      if (
-        !storageValues ||
-        Object.keys(storageValues).length !== Object.keys(initialValues).length
-      )
-        return initialValues;
-
-      const values = {
-        ...storageValues,
-        birthDate: new Date(storageValues.birthDate),
-      };
-      return values;
-    } catch (e) {
-      return initialValues;
-    }
-  };
 
   const [continueForm, setContinueForm] = useState(
     () => !isEqual(getStorageValues(), initialValues)
@@ -83,8 +60,8 @@ export const FormStepper = ({ children, ...props }) => {
   };
 
   const validationSchema = getValidationSchema({
-    usernames: valuesToEdit ? [] : usernames,
-    emails: valuesToEdit ? [] : emails,
+    usernames,
+    emails,
     step,
   });
 
@@ -178,9 +155,7 @@ export const FormStepper = ({ children, ...props }) => {
     formik.setTouched({});
   };
   const isLastStep = () => step === steps.length - 1;
-  const toStep = step => {
-    formik.isValid && setStep(step);
-  };
+  const toStep = step => formik.isValid && setStep(step);
 
   return (
     <FormikProvider value={formik}>
@@ -220,3 +195,8 @@ export const FormStepper = ({ children, ...props }) => {
 };
 
 FormStepper.propTypes = FormStepperType;
+
+const mapStateToProps = state => ({
+  usernames: selectAllUsernames(state),
+  emails: selectAllEmails(state),
+});
