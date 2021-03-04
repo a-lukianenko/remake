@@ -31,6 +31,29 @@
   margin: 1rem auto 3rem;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.paginationItem {
+  margin-right: 5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  vertical-align: sub;
+  background: var(--blue);
+}
+
+.paginationItemActive {
+  background: blue;
+}
+
+.paginationItem a {
+  color: white;
+}
+
 @media screen and (max-width: 767px) {
   .thead {
     border: none;

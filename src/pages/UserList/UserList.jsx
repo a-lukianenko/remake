@@ -1,26 +1,35 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
+import Pagination from "react-js-pagination";
+
 import { selectAllUsers, selectIsLoading } from "features/users/usersSlice";
 
 import { NoUsers } from "./NoUser/NoUsers";
 import { UserRecord } from "./UserRecord/UserRecord";
 
-import { table, thead, tbody, h2 } from "./UserList.module.css";
+import {
+  table,
+  thead,
+  tbody,
+  h2,
+  pagination,
+  paginationItem,
+  paginationItemActive,
+} from "./UserList.module.css";
 import { Loader } from "components/Loader/Loader";
 import { SearchInput } from "components/Inputs/SearchInput/SearchInput";
 import { GenerateAccountsBtn } from "components/Buttons/GenerateAccountsBtn/GenerateAccountsBtn";
-import { Pagination } from "components/Pagination/Pagination";
 
 export const UsersList = () => {
   const users = useSelector(selectAllUsers);
   const isLoading = useSelector(selectIsLoading);
 
-  const [page, setPage] = useState(0);
+  const [activePage, setActivePage] = useState(0);
 
-  const handlePrev = () => setPage(page => page > 0 && page - 1);
-  const handleNext = () =>
-    setPage(page => page < Math.trunc(users.length / 5) && page + 1);
+  const handlePageChange = pageNumber => {
+    setActivePage(pageNumber);
+  };
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -38,7 +47,7 @@ export const UsersList = () => {
     usersToDisplay?.length > 0
       ? usersToDisplay
           .map(user => <UserRecord user={user} key={user.id} />)
-          .slice(5 * page, 5 * (page + 1))
+          .slice(5 * activePage, 5 * (activePage + 1))
       : usersToDisplay;
 
   if (isLoading)
@@ -54,11 +63,16 @@ export const UsersList = () => {
     <section>
       <h2 className={h2}>List of users</h2>
       <SearchInput searchTerm={searchTerm} onSearch={handleSearch} />
+
       <Pagination
-        count={usersToDisplay.length}
-        current={page}
-        onPrev={handlePrev}
-        onNext={handleNext}
+        activePage={activePage}
+        itemsCountPerPage={5}
+        totalItemsCount={users.length}
+        pageRangeDisplayed={5}
+        onChange={handlePageChange}
+        innerClass={pagination}
+        itemClass={paginationItem}
+        activeClass={paginationItemActive}
       />
       <table className={`${table} striped-table`}>
         <thead className={thead}>
